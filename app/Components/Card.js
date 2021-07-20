@@ -6,6 +6,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
+import colors from "../config/colors";
 
 import CardInfo from "./CardInfo";
 
@@ -32,7 +33,7 @@ function Card({ imageUrl, onPress, overView, title, voteAverage }) {
 const styles = StyleSheet.create({
   card: {
     alignItems: "center",
-    backgroundColor: "green",
+    backgroundColor: colors.cardBG,
     display: "flex",
     flexDirection: "row",
     height: 220,

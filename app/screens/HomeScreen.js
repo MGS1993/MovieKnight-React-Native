@@ -7,6 +7,7 @@ import Screen from "./Screen";
 
 import apiCalls from "../Util/apiCalls";
 import Card from "../Components/Card";
+import colors from "../config/colors";
 
 function HomeScreen(props) {
   const [test, setTest] = useState();
@@ -31,7 +32,7 @@ function HomeScreen(props) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "blue",
+    backgroundColor: colors.mainBG,
     top: Constants.statusBarHeight,
   },
 });

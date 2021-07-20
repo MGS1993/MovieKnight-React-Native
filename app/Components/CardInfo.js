@@ -5,16 +5,24 @@ import colors from "../config/colors";
 function CardInfo({ title, overView, voteAverage }) {
   return (
     <View style={styles.detailsContainer}>
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.voteAverage}>{voteAverage}</Text>
-      <View>
-        <Text style={styles.overView}>{overView}</Text>
+      <View style={styles.topWrapper}>
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.voteAverage}>{voteAverage}</Text>
+      </View>
+
+      <View style={styles.bottomWrapper}>
+        <Text numberOfLines={8} style={styles.overView}>
+          {overView}
+        </Text>
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  bottomWrapper: {
+    flex: 3,
+  },
   detailsContainer: {
     alignItems: "center",
     flexDirection: "column",
@@ -22,14 +30,22 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   title: {
-    color: colors.accent,
+    color: colors.white,
     fontSize: 20,
     fontWeight: "bold",
+  },
+  topWrapper: {
+    flex: 1,
   },
   overView: {
     color: colors.white,
     paddingLeft: 10,
     paddingRight: 10,
+  },
+  voteAverage: {
+    alignSelf: "center",
+    color: colors.accent,
+    fontSize: 18,
   },
 });
 
