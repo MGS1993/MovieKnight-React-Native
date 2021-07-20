@@ -2,11 +2,12 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-import Screen from "./app/screens/screen";
+import Screen from "./app/screens/Screen";
 import WelcomeScreen from "./app/screens/WelcomeScreen";
+import HomeScreen from "./app/screens/HomeScreen";
 
 export default function App() {
-  return <WelcomeScreen />;
+  return <HomeScreen />;
 }
 
 // const styles = StyleSheet.create({
