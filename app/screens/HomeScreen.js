@@ -1,29 +1,34 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { StyleSheet } from "react-native";
 
-import AppButton from "../Components/AppButton";
 import Constants from "expo-constants";
 import Screen from "./Screen";
 
 import apiCalls from "../Util/apiCalls";
 import Card from "../Components/Card";
 import colors from "../config/colors";
+import useApi from "../hooks/useApi";
 
 function HomeScreen(props) {
-  const [test, setTest] = useState();
+  // const [test, setTest] = useState();
+  // const [data, reload] = useApi();
 
-  useEffect(() => {
-    apiCalls.trendingMedia(setTest);
-  }, []);
-
+  // console.log(data[0].backdrop_path);
+  //TODO get list up and running.
+  //TODO make a custom hook for apicalls
+  // useEffect(() => {
+  //   apiCalls.trendingMedia(setTest);
+  // }, []);
+  const [data] = useApi();
+  console.log(data);
   return (
     <Screen style={styles.container}>
-      {test !== undefined ? (
+      {data !== undefined ? (
         <Card
-          imageUrl={test[0].backdrop_path}
-          overView={test[0].overview}
-          title={test[0].title}
-          voteAverage={test[0].vote_average}
+          imageUrl={data[0].backdrop_path}
+          overView={data[0].overview}
+          title={data[0].title}
+          voteAverage={data[0].vote_average}
         />
       ) : null}
     </Screen>
