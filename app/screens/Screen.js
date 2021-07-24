@@ -14,6 +14,7 @@ function Screen({ children, style }) {
 
 const styles = StyleSheet.create({
   screen: {
+    backgroundColor: colors.mainBG,
     top: Constants.statusBarHeight,
     flex: 1,
   },

@@ -3,7 +3,13 @@ import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
 import colors from "../config/colors";
 
-function AppButton({ bgColor = "dodgerblue", onPress, title, top }) {
+function AppButton({
+  bgColor = "dodgerblue",
+  onPress,
+  title,
+  top,
+  width = "90%",
+}) {
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -12,6 +18,7 @@ function AppButton({ bgColor = "dodgerblue", onPress, title, top }) {
         {
           backgroundColor: bgColor,
           top: top,
+          width: width,
         },
       ]}
     >
@@ -29,7 +36,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
     marginBottom: 15,
     padding: 15,
-    width: "90%",
+    // width: "90%",
   },
   text: {
     color: colors.white,
