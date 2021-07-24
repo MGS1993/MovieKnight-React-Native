@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import apiCalls from "../Util/apiCalls";
 
 const useApi = (apiFunction) => {
   const [data, setData] = useState();
