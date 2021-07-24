@@ -10,17 +10,9 @@ import colors from "../config/colors";
 import useApi from "../hooks/useApi";
 
 function HomeScreen(props) {
-  // const [test, setTest] = useState();
-  // const [data, reload] = useApi();
-
-  // console.log(data[0].backdrop_path);
   //TODO get list up and running.
-  //TODO make a custom hook for apicalls
-  // useEffect(() => {
-  //   apiCalls.trendingMedia(setTest);
-  // }, []);
-  const [data] = useApi();
-  console.log(data);
+  const [data] = useApi(apiCalls.trendingMedia);
+
   return (
     <Screen style={styles.container}>
       {data !== undefined ? (

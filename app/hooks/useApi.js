@@ -6,8 +6,7 @@ const useApi = (apiFunction) => {
 
   const reload = async () => {
     try {
-      // setData(null);
-      setData(await apiCalls.trendingMedia());
+      setData(await apiFunction());
     } catch (error) {
       console.log(error);
     }
