@@ -11,8 +11,10 @@ function SearchScreen(props) {
   return (
     <Screen style={styles.container}>
       <SearchBar onChangeText={(search) => setSearch(search)} value={search} />
-      <Button title="click me bih" onPress={() => console.log(search)} />
-      <AppButton title="test" />
+      <View style={styles.trendingWrapper}>
+        <AppButton title="Trending Movies" />
+        <AppButton title="Trending Tv Shows" />
+      </View>
     </Screen>
   );
 }
@@ -20,6 +22,11 @@ function SearchScreen(props) {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "column",
+  },
+  trendingWrapper: {
+    alignItems: "center",
+    flex: 1,
+    justifyContent: "center",
   },
 });
 
