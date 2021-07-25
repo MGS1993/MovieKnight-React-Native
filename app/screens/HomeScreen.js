@@ -7,29 +7,10 @@ import Screen from "./Screen";
 
 import apiCalls from "../Util/apiCalls";
 import useApi from "../hooks/useApi";
+import Feed from "../Components/Feed";
 
 function HomeScreen(props) {
-  const [data] = useApi(apiCalls.trendingMedia);
-
-  return (
-    <Screen>
-      {data !== undefined ? (
-        <FlatList
-          data={data}
-          keyExtractor={(media) => media.id.toString()}
-          renderItem={({ item }) => (
-            <Card
-              imageUrl={item.backdrop_path}
-              overView={item.overview}
-              title={item.title}
-              voteAverage={item.vote_average}
-            />
-          )}
-          ItemSeparatorComponent={() => <ListItemSeparator />}
-        />
-      ) : null}
-    </Screen>
-  );
+  return <Feed apiCall={useApi(apiCalls.getListings())} />;
 }
 
 export default HomeScreen;
