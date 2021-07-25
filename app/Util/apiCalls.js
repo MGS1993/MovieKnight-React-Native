@@ -6,7 +6,6 @@ const trendingMedia = async () => {
       `https://api.themoviedb.org/3/trending/all/week?api_key=${apiKey}`
     );
     const data = await response.json();
-    console.log("in apicalls", data);
     return data.results;
     // return setState(item);
   } catch (err) {
