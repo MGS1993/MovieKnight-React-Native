@@ -1,12 +1,16 @@
 import React from "react";
 import { FlatList } from "react-native";
 
+import apiCalls from "../Util/apiCalls";
 import Card from "../Components/Card";
 import ListItemSeparator from "../Components/ListItemSeparator";
 import Screen from "../screens/Screen";
+import useApi from "../hooks/useApi";
 
-function Feed({ apiCall }) {
-  const data = apiCall;
+function Feed({ data, params }) {
+  if (!data) console.log("test");
+  // const { data, error, loading, request} = useApi(`apiCalls.${params.funcName}`);
+
   return (
     <Screen>
       {data !== undefined ? (

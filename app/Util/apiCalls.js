@@ -7,7 +7,6 @@ const trendingMedia = async () => {
     );
     const data = await response.json();
     return data.results;
-    // return setState(item);
   } catch (err) {
     console.log(err);
   }
@@ -16,10 +15,10 @@ const trendingMedia = async () => {
 const trendingByType = async (mediaType) => {
   try {
     const response = await fetch(
-      ` https://api.themoviedb.org/3/trending/${mediaType}/week?api_key=${apiKey}`
+      `https://api.themoviedb.org/3/trending/${mediaType}/week?api_key=${apiKey}`
     );
     const data = await response.json();
-    return data;
+    return data.results;
   } catch (err) {
     console.log(err);
   }
