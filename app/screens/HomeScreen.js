@@ -10,7 +10,10 @@ import useApi from "../hooks/useApi";
 import Feed from "../Components/Feed";
 
 function HomeScreen(props) {
-  return <Feed apiCall={useApi(apiCalls.getListings())} />;
+  // apiCall={useApi(apiCalls.trendingMedia())}
+  let test = useApi(apiCalls.trendingMedia());
+  // console.log(" in homepage", apiCalls.trendingMedia());
+  return <Feed apiCall={useApi(apiCalls.trendingMedia())} />;
 }
 
 export default HomeScreen;

@@ -7,8 +7,9 @@ const useApi = (apiFunction) => {
     try {
       // console.log(await apiFunction);
       const stateData = await apiFunction;
+      console.log("stateData:", stateData);
       // console.log("in useapi", stateData.data.results);
-      setData(stateData.data.results);
+      setData(stateData);
     } catch (error) {
       console.log(error);
     }

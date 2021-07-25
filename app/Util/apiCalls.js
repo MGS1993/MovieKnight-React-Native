@@ -1,13 +1,12 @@
-import client from "./client";
 const apiKey = "b88a57406d9a87698d307358f3e4f4ab";
 
 const trendingMedia = async () => {
   try {
     const response = await fetch(
-      ` https://api.themoviedb.org/3/trending/all/week?api_key=${apiKey}`
+      `https://api.themoviedb.org/3/trending/all/week?api_key=${apiKey}`
     );
     const data = await response.json();
-    console.log(data);
+    console.log("in apicalls", data);
     return data.results;
     // return setState(item);
   } catch (err) {
@@ -27,6 +26,4 @@ const trendingByType = async (mediaType) => {
   }
 };
 
-const getListings = () => client.get();
-
-export default { trendingByType, trendingMedia, getListings };
+export default { trendingByType, trendingMedia };
