@@ -3,8 +3,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import HomeNavigator from "./HomeNavigator";
-import HomeScreen from "../screens/HomeScreen";
-// import SearchScreen from "../screens/SearchBtns";
 import SearchNavigator from "../navigation/SearchNavigator";
 
 const Tab = createBottomTabNavigator();
