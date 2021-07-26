@@ -1,5 +1,4 @@
 import React from "react";
-import Constants from "expo-constants";
 import { SafeAreaView, StyleSheet, View } from "react-native";
 import colors from "../config/colors";
 
@@ -7,7 +6,7 @@ function Screen({ children, style }) {
   return (
     //styles array makes multiple styles possible
     <SafeAreaView style={[styles.screen, style]}>
-      <View style={[styles.view, style]}>{children}</View>
+      <View style={[styles.view]}>{children}</View>
     </SafeAreaView>
   );
 }
@@ -15,7 +14,7 @@ function Screen({ children, style }) {
 const styles = StyleSheet.create({
   screen: {
     backgroundColor: colors.mainBG,
-    top: Constants.statusBarHeight,
+    top: 0,
     flex: 1,
   },
   view: {

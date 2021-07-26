@@ -22,7 +22,15 @@ function SearchBtns({ navigation }) {
             })
           }
         />
-        <AppButton title="Trending Tv Shows" />
+        <AppButton
+          title="Trending Tv Shows"
+          onPress={() =>
+            navigation.navigate(routes.TRENDING_TV, {
+              funcName: "trendingByType",
+              funcVar: "tv",
+            })
+          }
+        />
       </View>
     </Screen>
   );
@@ -31,6 +39,7 @@ function SearchBtns({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "column",
+    top: 0,
   },
   trendingWrapper: {
     alignItems: "center",

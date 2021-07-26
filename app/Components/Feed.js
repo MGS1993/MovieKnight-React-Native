@@ -7,7 +7,7 @@ import ListItemSeparator from "../Components/ListItemSeparator";
 import Screen from "../screens/Screen";
 import useApi from "../hooks/useApi";
 
-function Feed({ data, route }) {
+function Feed({ data, route, style }) {
   let apiCall;
   let funcVar;
   let funcCall;
@@ -22,7 +22,7 @@ function Feed({ data, route }) {
   }
   const { data: resData, error, loading, request } = funcCall || {};
   return (
-    <Screen>
+    <Screen style={style}>
       {data || route !== undefined ? (
         <FlatList
           data={data || resData}

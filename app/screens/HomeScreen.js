@@ -1,4 +1,6 @@
 import React, { useEffect } from "react";
+import { StyleSheet } from "react-native";
+import Constants from "expo-constants";
 
 import apiCalls from "../Util/apiCalls";
 import Feed from "../Components/Feed";
@@ -14,7 +16,13 @@ function HomeScreen(props) {
   useEffect(() => {
     getData();
   }, []);
-  return <Feed data={data} />;
+  return <Feed data={data} style={styles.container} />;
 }
+
+const styles = StyleSheet.create({
+  container: {
+    top: Constants.statusBarHeight,
+  },
+});
 
 export default HomeScreen;
