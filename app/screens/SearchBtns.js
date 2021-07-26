@@ -18,6 +18,7 @@ function SearchBtns({ navigation }) {
           onPress={() =>
             navigation.navigate(routes.TRENDING_MOVIES, {
               funcName: `trendingByType`,
+              funcVar: "movie",
             })
           }
         />

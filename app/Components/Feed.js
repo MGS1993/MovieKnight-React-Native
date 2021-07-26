@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FlatList } from "react-native";
 
 import apiCalls from "../Util/apiCalls";
@@ -7,15 +7,25 @@ import ListItemSeparator from "../Components/ListItemSeparator";
 import Screen from "../screens/Screen";
 import useApi from "../hooks/useApi";
 
-function Feed({ data, params }) {
-  if (!data) console.log("test");
-  // const { data, error, loading, request} = useApi(`apiCalls.${params.funcName}`);
+function Feed({ data, route }) {
+  let apiCall;
+  let funcVar;
+  let funcCall;
+  if (route) {
+    apiCall = apiCalls[route.params.funcName];
+    funcVar = route.params.funcVar;
+    funcCall = useApi(apiCall);
 
+    useEffect(() => {
+      funcCall.request(funcVar);
+    }, []);
+  }
+  const { data: resData, error, loading, request } = funcCall || {};
   return (
     <Screen>
-      {data !== undefined ? (
+      {data || route !== undefined ? (
         <FlatList
-          data={data}
+          data={data || resData}
           keyExtractor={(media) => media.id.toString()}
           renderItem={({ item }) => (
             <Card
