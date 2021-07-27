@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { Button, View, StyleSheet } from "react-native";
+import React from "react";
+import { View, StyleSheet } from "react-native";
 
-import apiCalls from "../Util/apiCalls";
 import AppButton from "../Components/AppButton";
 import SearchBar from "../Components/SearchBar";
 import routes from "../navigation/routes";
 import Screen from "./Screen";
-import useApi from "../hooks/useApi";
 
 function SearchBtns({ navigation }) {
   return (
@@ -31,6 +29,7 @@ function SearchBtns({ navigation }) {
             })
           }
         />
+        <AppButton title="Search" style={styles.advSearchBtn} />
       </View>
     </Screen>
   );
@@ -41,8 +40,12 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     top: 0,
   },
+  advSearchBtn: {
+    top: 30,
+  },
   trendingWrapper: {
     alignItems: "center",
+    marginVertical: 20,
     flex: 1,
     justifyContent: "center",
   },

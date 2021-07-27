@@ -6,6 +6,7 @@ import colors from "../config/colors";
 function AppButton({
   bgColor = colors.accent,
   onPress,
+  style,
   title,
   top,
   width = "90%",
@@ -20,6 +21,7 @@ function AppButton({
           top: top,
           width: width,
         },
+        style,
       ]}
     >
       <Text style={styles.text}>{title}</Text>
