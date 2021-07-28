@@ -17,9 +17,8 @@ function SearchBtns({ navigation }) {
           title="Top Movies"
           width="40%"
           onPress={() =>
-            navigation.navigate(routes.TRENDING_MOVIES, {
-              funcName: `trendingByType`,
-              funcVar: "movie",
+            navigation.navigate(routes.TOP_MOVIES, {
+              mediaType: "movie",
             })
           }
         />
@@ -28,9 +27,8 @@ function SearchBtns({ navigation }) {
           title="Top TV Shows"
           width="40%"
           onPress={() =>
-            navigation.navigate(routes.TRENDING_TV, {
-              funcName: "trendingByType",
-              funcVar: "tv",
+            navigation.navigate(routes.TOP_MOVIES, {
+              mediaType: "tv",
             })
           }
         />
@@ -65,7 +63,7 @@ function SearchBtns({ navigation }) {
         <View style={styles.manualSearch}>
           <AppButton
             style={styles.btnStyle}
-            title="Trending Tv Shows"
+            title="Movies"
             width="40%"
             onPress={() =>
               navigation.navigate(routes.TRENDING_TV, {
@@ -76,7 +74,7 @@ function SearchBtns({ navigation }) {
           />
           <AppButton
             style={styles.btnStyle}
-            title="Trending Tv Shows"
+            title="Tv Shows"
             width="40%"
             onPress={() =>
               navigation.navigate(routes.TRENDING_TV, {

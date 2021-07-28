@@ -31,7 +31,7 @@ const getMediaByGenre = async (mediaType) => {
       `https://api.themoviedb.org/3/genre/${mediaType}/list?api_key=${apiKey}&language=en-US`
     );
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
     return data.genres;
   } catch (err) {
     console.log(err);

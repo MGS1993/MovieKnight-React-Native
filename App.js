@@ -9,7 +9,7 @@ import SearchAdvanced from "./app/screens/SearchAdvanced";
 export default function App() {
   return (
     <NavigationContainer>
-      <SearchAdvanced />
+      <AppNavigator />
     </NavigationContainer>
   );
 }

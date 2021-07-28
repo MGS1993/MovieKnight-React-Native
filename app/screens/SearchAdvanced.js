@@ -8,7 +8,7 @@ import Screen from "./Screen";
 import useApi from "../hooks/useApi";
 import { Picker } from "@react-native-picker/picker";
 
-function SearchAdvanced(props) {
+function SearchAdvanced({ route }) {
   const {
     data: genre,
     error,
@@ -19,29 +19,39 @@ function SearchAdvanced(props) {
 
   let pickerItems = [];
   useEffect(() => {
-    //have 'movie' be a variable passed down from nav params
-    getData("movie");
+    getData(route.params.mediaType);
   }, []);
 
   //TODO refactor below
   if (genre !== undefined) {
     genre.forEach((el, index) => {
       pickerItems.push(
-        <Picker.Item key={index} label={el.name} value={el.id} />
+        <Picker.Item
+          style={styles.pickerItems}
+          key={index}
+          label={el.name}
+          value={el.id}
+        />
       );
     });
   }
-  // console.log(pickerItems);
+
   return (
     <Screen style={styles.container}>
       <View style={styles.mainWrapper}>
         <Text style={styles.text}> Top movies by selected Genre</Text>
-        <Picker
-          selectedValue={selectedGenre}
-          onValueChange={(itemValue, itemIndex) => setSelectedGenre(itemValue)}
-        >
-          {pickerItems}
-        </Picker>
+        <View style={styles.pickerWrapper}>
+          <Picker
+            prompt="Genres"
+            selectedValue={selectedGenre}
+            style={styles.picker}
+            onValueChange={(itemValue, itemIndex) =>
+              setSelectedGenre(itemValue)
+            }
+          >
+            {pickerItems}
+          </Picker>
+        </View>
       </View>
     </Screen>
   );
@@ -49,12 +59,30 @@ function SearchAdvanced(props) {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: Constants.statusBarHeight,
+    // marginTop: Constants.statusBarHeight,
+  },
+  picker: {
+    alignSelf: "center",
+    color: "white",
+    flex: 1,
+    width: "80%",
+    textAlign: "center",
+  },
+  pickerItems: {
+    fontSize: 20,
+  },
+  pickerWrapper: {
+    alignSelf: "center",
+    backgroundColor: colors.accent,
+    borderRadius: 10,
+    height: 50,
+    width: "40%",
   },
   text: {
     color: colors.accent,
     fontSize: 20,
     fontWeight: "bold",
+    alignSelf: "center",
   },
 });
 

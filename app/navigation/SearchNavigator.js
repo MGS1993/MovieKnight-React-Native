@@ -3,6 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import constants from "expo-constants";
 import Feed from "../Components/Feed";
+import SearchAdvanced from "../screens/SearchAdvanced";
 import SearchBTns from "../screens/SearchBtns";
 
 const Stack = createStackNavigator();
@@ -28,6 +29,16 @@ const SearchNavigator = () => (
       name="TrendingTv"
       component={Feed}
       options={{ title: "Trending TV Shows" }}
+    />
+    <Stack.Screen
+      name="TopMovies"
+      component={SearchAdvanced}
+      options={{ title: "Top Movies" }}
+    />
+    <Stack.Screen
+      name="TopTv"
+      component={SearchAdvanced}
+      options={{ title: "Top Tv" }}
     />
   </Stack.Navigator>
 );
