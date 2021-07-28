@@ -6,6 +6,7 @@ import colors from "../config/colors";
 function AppButton({
   bgColor = colors.accent,
   onPress,
+  padding = 15,
   style,
   title,
   top,
@@ -18,6 +19,7 @@ function AppButton({
         styles.button,
         {
           backgroundColor: bgColor,
+          padding: padding,
           top: top,
           width: width,
         },
@@ -37,13 +39,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginTop: 15,
     marginBottom: 15,
-    padding: 15,
-    // width: "90%",
   },
   text: {
     color: colors.white,
     fontSize: 18,
     fontWeight: "bold",
+    textAlign: "center",
     textTransform: "uppercase",
   },
 });
