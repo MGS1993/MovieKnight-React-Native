@@ -23,7 +23,7 @@ function SearchAdvanced({ route }) {
   }, []);
 
   //TODO refactor below
-  if (genre !== undefined) {
+  if (genre)
     genre.forEach((el, index) => {
       pickerItems.push(
         <Picker.Item
@@ -34,7 +34,6 @@ function SearchAdvanced({ route }) {
         />
       );
     });
-  }
 
   return (
     <Screen style={styles.container}>
