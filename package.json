@@ -8,7 +8,9 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.15.5",
     "@react-native-community/masked-view": "0.1.10",
+    "@react-native-community/netinfo": "6.0.0",
     "@react-native-picker/picker": "^1.16.3",
     "@react-navigation/bottom-tabs": "^5.11.11",
     "@react-navigation/native": "^5.9.4",
@@ -17,6 +19,7 @@
     "expo": "~42.0.1",
     "expo-constants": "^11.0.1",
     "expo-status-bar": "~1.0.4",
+    "moment": "^2.29.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
