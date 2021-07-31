@@ -4,25 +4,27 @@ import { View, StyleSheet, Text } from "react-native";
 import apiCalls from "../Util/apiCalls";
 import AppButton from "../Components/AppButton";
 import colors from "../config/colors";
+import routes from "../navigation/routes";
 import Screen from "./Screen";
 import useApi from "../hooks/useApi";
 import { Picker } from "@react-native-picker/picker";
 
-function SearchAdvanced({ route }) {
+function SearchAdvanced({ route, navigation }) {
   const {
     data: genre,
     error,
     loading,
     request: getData,
-  } = useApi(apiCalls.getMediaByGenre);
-  const [selectedGenre, setSelectedGenre] = useState();
+  } = useApi(apiCalls.getMediaGenre);
+  const [selectedGenre, setSelectedGenre] = useState("");
 
-  let pickerItems = [];
+  let pickerItems = [
+    <Picker.Item style={styles.pickerItems} key={-1} label="Genre" value="1" />,
+  ];
   useEffect(() => {
     getData(route.params.mediaType);
   }, []);
 
-  //TODO refactor below
   if (genre)
     genre.forEach((el, index) => {
       pickerItems.push(
@@ -40,7 +42,6 @@ function SearchAdvanced({ route }) {
       <View style={styles.mainWrapper}>
         <View style={styles.contentWrapper}>
           <Text style={styles.text}>
-            {" "}
             Top {route.params.mediaType} by selected Genre
           </Text>
           <View style={styles.pickerWrapper}>
@@ -48,9 +49,18 @@ function SearchAdvanced({ route }) {
               prompt="Genres"
               selectedValue={selectedGenre}
               style={styles.picker}
-              onValueChange={(itemValue, itemIndex) =>
-                setSelectedGenre(itemValue)
-              }
+              onValueChange={(itemCode, itemIndex) => {
+                setSelectedGenre(itemCode);
+                // let data = apiCalls.getMediaByGenre(
+                //   route.params.mediaType,
+                //   itemCode
+                // );
+                navigation.navigate(routes.TOP_MOVIES_GENRE, {
+                  funcName: "getMediaByGenre",
+                  funcVar: `${route.params.mediaType}`,
+                  otherVar: `${itemCode}`,
+                });
+              }}
             >
               {pickerItems}
             </Picker>

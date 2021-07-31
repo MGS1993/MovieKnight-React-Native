@@ -11,13 +11,14 @@ function Feed({ data, route, style }) {
   let apiCall;
   let funcVar;
   let funcCall;
+  let otherVar;
   if (route) {
     apiCall = apiCalls[route.params.funcName];
     funcVar = route.params.funcVar;
     funcCall = useApi(apiCall);
-
+    otherVar = route.params.otherVar;
     useEffect(() => {
-      funcCall.request(funcVar);
+      funcCall.request(funcVar, otherVar);
     }, []);
   }
   const { data: resData, error, loading, request } = funcCall || {};

@@ -40,6 +40,11 @@ const SearchNavigator = () => (
       component={SearchAdvanced}
       options={{ title: "Top Tv" }}
     />
+    <Stack.Screen
+      name="TopMovieByGenre"
+      component={Feed}
+      options={{ title: "Popular by Genre" }}
+    />
   </Stack.Navigator>
 );
 

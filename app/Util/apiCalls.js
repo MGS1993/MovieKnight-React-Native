@@ -25,7 +25,7 @@ const trendingByType = async (mediaType) => {
   }
 };
 
-const getMediaByGenre = async (mediaType) => {
+const getMediaGenre = async (mediaType) => {
   try {
     const response = await fetch(
       `https://api.themoviedb.org/3/genre/${mediaType}/list?api_key=${apiKey}&language=en-US`
@@ -38,4 +38,23 @@ const getMediaByGenre = async (mediaType) => {
   }
 };
 
-export default { getMediaByGenre, trendingByType, trendingMedia };
+const getMediaByGenre = async (mediaType, mediaCode) => {
+  //&page=${renderHelper}
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/discover/${mediaType}?api_key=${apiKey}&language=en-US&sort_by=vote_average.desc&vote_count.gte=800&with_genres=${mediaCode}&include_adult=false&include_video=false&watch_region=US`
+    );
+    const data = await response.json();
+    // console.log(data);
+    return data.results;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export default {
+  getMediaByGenre,
+  getMediaGenre,
+  trendingByType,
+  trendingMedia,
+};
