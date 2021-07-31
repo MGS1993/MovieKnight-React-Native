@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { View, StyleSheet, Text } from "react-native";
-import Constants from "expo-constants";
 
 import apiCalls from "../Util/apiCalls";
+import AppButton from "../Components/AppButton";
 import colors from "../config/colors";
 import Screen from "./Screen";
 import useApi from "../hooks/useApi";
@@ -38,18 +38,30 @@ function SearchAdvanced({ route }) {
   return (
     <Screen style={styles.container}>
       <View style={styles.mainWrapper}>
-        <Text style={styles.text}> Top movies by selected Genre</Text>
-        <View style={styles.pickerWrapper}>
-          <Picker
-            prompt="Genres"
-            selectedValue={selectedGenre}
-            style={styles.picker}
-            onValueChange={(itemValue, itemIndex) =>
-              setSelectedGenre(itemValue)
-            }
-          >
-            {pickerItems}
-          </Picker>
+        <View style={styles.contentWrapper}>
+          <Text style={styles.text}>
+            {" "}
+            Top {route.params.mediaType} by selected Genre
+          </Text>
+          <View style={styles.pickerWrapper}>
+            <Picker
+              prompt="Genres"
+              selectedValue={selectedGenre}
+              style={styles.picker}
+              onValueChange={(itemValue, itemIndex) =>
+                setSelectedGenre(itemValue)
+              }
+            >
+              {pickerItems}
+            </Picker>
+          </View>
+        </View>
+
+        <View style={styles.contentWrapper}>
+          <Text style={styles.text}>
+            Top {route.params.mediaType} all genres
+          </Text>
+          <AppButton style={{ alignSelf: "center" }} title="Search All" />
         </View>
       </View>
     </Screen>
@@ -59,6 +71,12 @@ function SearchAdvanced({ route }) {
 const styles = StyleSheet.create({
   container: {
     // marginTop: Constants.statusBarHeight,
+  },
+  contentWrapper: {
+    marginVertical: 20,
+  },
+  mainWrapper: {
+    top: "30%",
   },
   picker: {
     alignSelf: "center",
@@ -78,10 +96,11 @@ const styles = StyleSheet.create({
     width: "40%",
   },
   text: {
-    color: colors.accent,
-    fontSize: 20,
-    fontWeight: "bold",
     alignSelf: "center",
+    color: colors.accent,
+    fontSize: 22,
+    fontWeight: "bold",
+    marginBottom: 25,
   },
 });
 
