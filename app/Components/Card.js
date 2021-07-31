@@ -1,13 +1,7 @@
 import React from "react";
-import {
-  Image,
-  StyleSheet,
-  Text,
-  TouchableWithoutFeedback,
-  View,
-} from "react-native";
+import { StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
 import colors from "../config/colors";
-
+import { Image } from "react-native-expo-image-cache";
 import CardInfo from "./CardInfo";
 
 function Card({ imageUrl, onPress, overView, title, voteAverage }) {
@@ -18,7 +12,12 @@ function Card({ imageUrl, onPress, overView, title, voteAverage }) {
         <View style={styles.imageContainer}>
           <Image
             style={styles.image}
-            source={{ uri: "https://image.tmdb.org/t/p/w780/" + imageUrl }}
+            //source is replaced by 'uri' due to different api in imported Image
+            // source={{ uri: "https://image.tmdb.org/t/p/w780/" + imageUrl }}
+            //preview is used as a thumbnail for progressive loading
+            preview={{ uri: "https://image.tmdb.org/t/p/w300/" + imageUrl }}
+            uri={"https://image.tmdb.org/t/p/w780/" + imageUrl}
+            transitionDuration={100}
             resizeMode="contain"
           />
         </View>
