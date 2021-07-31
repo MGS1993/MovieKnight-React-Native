@@ -52,7 +52,22 @@ const getMediaByGenre = async (mediaType, mediaCode) => {
   }
 };
 
+const getTopMediaAllGenres = async (mediaType) => {
+  //page=${renderHelper}
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/discover/${mediaType}?api_key=${apiKey}&language=en-US&sort_by=vote_average.desc&vote_count.gte=10000&&timezone=America%2FTexas&include_null_first_air_dates=false`
+    );
+    const data = await response.json();
+    // console.log(data.results);
+    return data.results;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 export default {
+  getTopMediaAllGenres,
   getMediaByGenre,
   getMediaGenre,
   trendingByType,

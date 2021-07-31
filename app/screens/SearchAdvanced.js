@@ -9,6 +9,7 @@ import Screen from "./Screen";
 import useApi from "../hooks/useApi";
 import { Picker } from "@react-native-picker/picker";
 
+//TODO add multi genre picking
 function SearchAdvanced({ route, navigation }) {
   const {
     data: genre,
@@ -51,10 +52,6 @@ function SearchAdvanced({ route, navigation }) {
               style={styles.picker}
               onValueChange={(itemCode, itemIndex) => {
                 setSelectedGenre(itemCode);
-                // let data = apiCalls.getMediaByGenre(
-                //   route.params.mediaType,
-                //   itemCode
-                // );
                 navigation.navigate(routes.TOP_MOVIES_GENRE, {
                   funcName: "getMediaByGenre",
                   funcVar: `${route.params.mediaType}`,
@@ -71,7 +68,16 @@ function SearchAdvanced({ route, navigation }) {
           <Text style={styles.text}>
             Top {route.params.mediaType} all genres
           </Text>
-          <AppButton style={{ alignSelf: "center" }} title="Search All" />
+          <AppButton
+            style={{ alignSelf: "center" }}
+            title="Search All"
+            onPress={() =>
+              navigation.navigate(routes.TOP_MEDIA_ALL_GENRE, {
+                funcName: "getTopMediaAllGenres",
+                funcVar: `${route.params.mediaType}`,
+              })
+            }
+          />
         </View>
       </View>
     </Screen>

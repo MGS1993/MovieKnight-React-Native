@@ -45,6 +45,11 @@ const SearchNavigator = () => (
       component={Feed}
       options={{ title: "Popular by Genre" }}
     />
+    <Stack.Screen
+      name="TopMediaAllGenre"
+      component={Feed}
+      options={{ title: "Top by Genre" }}
+    />
   </Stack.Navigator>
 );
 
