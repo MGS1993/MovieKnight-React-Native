@@ -18,12 +18,24 @@ function SearchAdvanced({ route, navigation }) {
     request: getData,
   } = useApi(apiCalls.getMediaGenre);
   const [selectedGenre, setSelectedGenre] = useState("");
-
+  const mediaType = route.params.mediaType;
   let pickerItems = [
     <Picker.Item style={styles.pickerItems} key={-1} label="Genre" value="1" />,
   ];
+
+  const navigate = (itemCode) => {
+    if (selectedGenre === "") {
+      return null;
+    }
+    navigation.navigate(routes.TOP_MOVIES_GENRE, {
+      funcName: "getMediaByGenre",
+      funcVar: `${mediaType}`,
+      otherVar: `${itemCode}`,
+    });
+  };
+
   useEffect(() => {
-    getData(route.params.mediaType);
+    getData(mediaType);
   }, []);
 
   if (genre)
@@ -42,9 +54,7 @@ function SearchAdvanced({ route, navigation }) {
     <Screen style={styles.container}>
       <View style={styles.mainWrapper}>
         <View style={styles.contentWrapper}>
-          <Text style={styles.text}>
-            Top {route.params.mediaType} by selected Genre
-          </Text>
+          <Text style={styles.text}>Top {mediaType} by selected Genre</Text>
           <View style={styles.pickerWrapper}>
             <Picker
               prompt="Genres"
@@ -52,11 +62,7 @@ function SearchAdvanced({ route, navigation }) {
               style={styles.picker}
               onValueChange={(itemCode, itemIndex) => {
                 setSelectedGenre(itemCode);
-                navigation.navigate(routes.TOP_MOVIES_GENRE, {
-                  funcName: "getMediaByGenre",
-                  funcVar: `${route.params.mediaType}`,
-                  otherVar: `${itemCode}`,
-                });
+                navigate(itemCode);
               }}
             >
               {pickerItems}
@@ -65,16 +71,14 @@ function SearchAdvanced({ route, navigation }) {
         </View>
 
         <View style={styles.contentWrapper}>
-          <Text style={styles.text}>
-            Top {route.params.mediaType} all genres
-          </Text>
+          <Text style={styles.text}>Top {mediaType} all genres</Text>
           <AppButton
             style={{ alignSelf: "center" }}
             title="Search All"
             onPress={() =>
               navigation.navigate(routes.TOP_MEDIA_ALL_GENRE, {
                 funcName: "getTopMediaAllGenres",
-                funcVar: `${route.params.mediaType}`,
+                funcVar: `${mediaType}`,
               })
             }
           />
