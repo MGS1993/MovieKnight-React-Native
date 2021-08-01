@@ -39,11 +39,11 @@ const getMediaGenre = async (mediaType) => {
   }
 };
 
-const getMediaByGenre = async (mediaType, mediaCode) => {
+const getMediaByGenre = async (mediaType, mediaCode, voteCount) => {
   //&page=${renderHelper}
   try {
     const response = await fetch(
-      `https://api.themoviedb.org/3/discover/${mediaType}?api_key=${apiKey}&language=en-US&sort_by=vote_average.desc&vote_count.gte=800&with_genres=${mediaCode}&include_adult=false&include_video=false&watch_region=US`
+      `https://api.themoviedb.org/3/discover/${mediaType}?api_key=${apiKey}&language=en-US&sort_by=vote_average.desc&vote_count.gte=${voteCount}&with_genres=${mediaCode}&include_adult=false&include_video=false&watch_region=US`
     );
     const data = await response.json();
     // console.log(data);
@@ -53,11 +53,11 @@ const getMediaByGenre = async (mediaType, mediaCode) => {
   }
 };
 
-const getTopMediaAllGenres = async (mediaType) => {
+const getTopMediaAllGenres = async (mediaType, voteCount) => {
   //page=${renderHelper}
   try {
     const response = await fetch(
-      `https://api.themoviedb.org/3/discover/${mediaType}?api_key=${apiKey}&language=en-US&sort_by=vote_average.desc&vote_count.gte=10000&&timezone=America%2FTexas&include_null_first_air_dates=false`
+      `https://api.themoviedb.org/3/discover/${mediaType}?api_key=${apiKey}&language=en-US&sort_by=vote_average.desc&vote_count.gte=${voteCount}&&timezone=America%2FTexas&include_null_first_air_dates=false`
     );
     const data = await response.json();
     // console.log(data.results);

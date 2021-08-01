@@ -31,6 +31,7 @@ function SearchAdvanced({ route, navigation }) {
       funcName: "getMediaByGenre",
       funcVar: `${mediaType}`,
       otherVar: `${itemCode}`,
+      voteCount: "200",
     });
   };
 
@@ -79,6 +80,7 @@ function SearchAdvanced({ route, navigation }) {
               navigation.navigate(routes.TOP_MEDIA_ALL_GENRE, {
                 funcName: "getTopMediaAllGenres",
                 funcVar: `${mediaType}`,
+                otherVar: 5000,
               })
             }
           />
