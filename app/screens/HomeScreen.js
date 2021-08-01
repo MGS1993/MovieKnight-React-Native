@@ -13,6 +13,7 @@ function HomeScreen(props) {
     loading,
     request: getData,
   } = useApi(apiCalls.trendingMedia);
+
   useEffect(() => {
     getData();
   }, []);
