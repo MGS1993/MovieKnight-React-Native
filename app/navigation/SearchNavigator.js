@@ -3,8 +3,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import constants from "expo-constants";
 import Feed from "../Components/Feed";
-import SearchHub from "../screens/SearchHub";
-import SearchBTns from "../screens/SearchBtns";
+import TopSearch from "../screens/TopSearch";
+import SearchBTns from "../screens/SearchHub";
+import SearchScreen from "../screens/SearchScreen";
 
 const Stack = createStackNavigator();
 
@@ -32,12 +33,12 @@ const SearchNavigator = () => (
     />
     <Stack.Screen
       name="TopMovies"
-      component={SearchHub}
+      component={TopSearch}
       options={{ title: "Top Movies" }}
     />
     <Stack.Screen
       name="TopTv"
-      component={SearchHub}
+      component={TopSearch}
       options={{ title: "Top Tv" }}
     />
     <Stack.Screen
@@ -49,6 +50,11 @@ const SearchNavigator = () => (
       name="TopMediaAllGenre"
       component={Feed}
       options={{ title: "Top by Genre" }}
+    />
+    <Stack.Screen
+      name="SearchScreen"
+      component={SearchScreen}
+      options={{ title: "Advanced Search" }}
     />
   </Stack.Navigator>
 );

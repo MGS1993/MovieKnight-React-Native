@@ -6,28 +6,11 @@ import { xorBy } from "lodash";
 import colors from "../config/colors";
 import AppButton from "./AppButton";
 
-function SearchBarModifiers({ onPress, title }) {
+function SearchBarModifiers({ options, title }) {
   const [visible, setVisible] = useState(false);
   const [selected, setSelected] = useState([]);
 
-  const options = [
-    {
-      item: "Juventus",
-      id: "JUVE",
-    },
-    {
-      item: "Real Madrid",
-      id: "RM",
-    },
-    {
-      item: "Barcelona",
-      id: "BR",
-    },
-    {
-      item: "PSG",
-      id: "PSG",
-    },
-  ];
+  // const options = [];
 
   const onMultiChange = () => {
     return (item) => setSelected(xorBy(selected, [item], "id"));
@@ -35,7 +18,7 @@ function SearchBarModifiers({ onPress, title }) {
 
   if (visible === true) {
     return (
-      <TouchableWithoutFeedback onPress={onPress}>
+      <TouchableWithoutFeedback>
         <>
           <View style={styles.mainWrapper}>
             <Text style={styles.text}>Select {`${title}`}</Text>

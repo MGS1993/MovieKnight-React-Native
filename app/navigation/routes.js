@@ -1,4 +1,5 @@
 export default Object.freeze({
+  SEARCH_SCREEN: "SearchScreen",
   TOP_MEDIA_ALL_GENRE: "TopMediaAllGenre",
   TOP_MOVIES_GENRE: "TopMovieByGenre",
   TOP_MOVIES: "TopMovies",

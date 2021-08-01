@@ -1,26 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, StyleSheet } from "react-native";
 import Constants from "expo-constants";
 
-import SearchBar from "../Components/SearchBar";
-import Screen from "./Screen";
+import apiCalls from "../Util/apiCalls";
 import AppSearchBar from "../Components/SearchBar";
+import arrayReArrange from "../Util/arrayReArrange";
 import ModBtn from "../Components/SearchBarModifiers";
+import Screen from "./Screen";
+import useApi from "../hooks/useApi";
 
-function SearchScreen(props) {
+function SearchScreen({ navigation, route }) {
   const [search, setSearch] = useState("");
-  // const [visible, setVisible] = useState(true);
+  const {
+    data,
+    error,
+    loading,
+    request: getGenre,
+  } = useApi(apiCalls.getMediaGenre);
+  const mediaType = route.params.mediaType;
 
+  useEffect(() => {
+    getGenre(mediaType);
+  }, []);
+  //rearranges and renames object to match requirements of SelectBox
+  const genre = arrayReArrange(data);
+  //
   return (
     <Screen style={styles.container}>
       <AppSearchBar
         onChangeText={(search) => setSearch(search)}
         value={search}
-        // visible={visible}
       />
       <View style={styles.modDiv}>
-        <ModBtn title="Genre" />
-        <ModBtn title="Tv" />
+        <ModBtn options={genre} title="Genre" />
       </View>
     </Screen>
   );
@@ -28,7 +40,7 @@ function SearchScreen(props) {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: Constants.statusBarHeight,
+    // marginTop: Constants.statusBarHeight,
   },
   modDiv: {
     justifyContent: "space-evenly",
