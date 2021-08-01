@@ -1,5 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+
 import colors from "../config/colors";
 
 function CardInfo({ title, overView, voteAverage }) {
@@ -7,7 +9,14 @@ function CardInfo({ title, overView, voteAverage }) {
     <View style={styles.detailsContainer}>
       <View style={styles.topWrapper}>
         <Text style={styles.title}>{title}</Text>
-        <Text style={styles.voteAverage}>{voteAverage}</Text>
+        <View style={styles.voteWrapper}>
+          <MaterialCommunityIcons
+            name="star-outline"
+            color={colors.accent}
+            size={20}
+          />
+          <Text style={styles.voteAverage}>{voteAverage}</Text>
+        </View>
       </View>
 
       <View style={styles.bottomWrapper}>
@@ -46,6 +55,12 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     color: colors.accent,
     fontSize: 18,
+    paddingLeft: 4,
+  },
+  voteWrapper: {
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
   },
 });
 

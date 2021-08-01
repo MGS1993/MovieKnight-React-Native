@@ -35,7 +35,7 @@ function Feed({ data, isLoading, route, style }) {
               <Card
                 imageUrl={item.backdrop_path}
                 overView={item.overview}
-                title={item.title}
+                title={item.title || item.name}
                 voteAverage={item.vote_average}
               />
             )}
