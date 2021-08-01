@@ -9,17 +9,17 @@ import ModBtn from "../Components/SearchBarModifiers";
 
 function SearchScreen(props) {
   const [search, setSearch] = useState("");
-  const [visible, setVisible] = useState(true);
+  // const [visible, setVisible] = useState(true);
 
   return (
     <Screen style={styles.container}>
       <AppSearchBar
         onChangeText={(search) => setSearch(search)}
         value={search}
-        visible={visible}
+        // visible={visible}
       />
       <View style={styles.modDiv}>
-        <ModBtn title="Movie" />
+        <ModBtn title="Genre" />
         <ModBtn title="Tv" />
       </View>
     </Screen>
@@ -31,7 +31,6 @@ const styles = StyleSheet.create({
     marginTop: Constants.statusBarHeight,
   },
   modDiv: {
-    flexDirection: "row",
     justifyContent: "space-evenly",
   },
 });

@@ -17,8 +17,11 @@
     "@react-navigation/stack": "^5.14.5",
     "apisauce": "^2.1.1",
     "expo": "~42.0.1",
+    "expo-blur": "~9.0.3",
     "expo-constants": "^11.0.1",
     "expo-status-bar": "~1.0.4",
+    "lodash": "^4.17.21",
+    "lottie-react-native": "4.0.2",
     "moment": "^2.29.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
@@ -26,12 +29,11 @@
     "react-native-elements": "^3.4.2",
     "react-native-expo-image-cache": "^4.1.0",
     "react-native-gesture-handler": "~1.10.2",
+    "react-native-multi-selectbox": "^1.5.0",
     "react-native-reanimated": "~2.2.0",
     "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "~3.4.0",
-    "react-native-web": "~0.13.12",
-    "expo-blur": "~9.0.3",
-    "lottie-react-native": "4.0.2"
+    "react-native-web": "~0.13.12"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"

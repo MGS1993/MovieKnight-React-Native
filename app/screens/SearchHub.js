@@ -10,7 +10,7 @@ import useApi from "../hooks/useApi";
 import { Picker } from "@react-native-picker/picker";
 
 //TODO add multi genre picking
-function SearchAdvanced({ route, navigation }) {
+function SearchHub({ route, navigation }) {
   const {
     data: genre,
     error,
@@ -126,4 +126,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SearchAdvanced;
+export default SearchHub;

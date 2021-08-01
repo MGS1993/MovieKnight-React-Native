@@ -7,7 +7,7 @@ import AppNavigator from "./app/navigation/AppNavigator";
 import OfflineNotice from "./app/Components/OfflineNotice";
 import SearchScreen from "./app/screens/SearchScreen";
 import WelcomeScreen from "./app/screens/WelcomeScreen";
-import SearchAdvanced from "./app/screens/SearchAdvanced";
+import SearchHub from "./app/screens/SearchHub";
 
 export default function App() {
   // const netInfo = useNetInfo();
