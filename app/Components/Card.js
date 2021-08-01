@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.cardBG,
     display: "flex",
     flexDirection: "row",
-    height: 220,
+    height: 180,
     width: "100%",
     top: 0,
   },

@@ -11,7 +11,7 @@ function CardInfo({ title, overView, voteAverage }) {
       </View>
 
       <View style={styles.bottomWrapper}>
-        <Text numberOfLines={8} style={styles.overView}>
+        <Text numberOfLines={5} style={styles.overView}>
           {overView}
         </Text>
       </View>
@@ -21,7 +21,7 @@ function CardInfo({ title, overView, voteAverage }) {
 
 const styles = StyleSheet.create({
   bottomWrapper: {
-    flex: 3,
+    // flex: 3,
   },
   detailsContainer: {
     alignItems: "center",
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   topWrapper: {
-    flex: 1,
+    // flex: 1,
   },
   overView: {
     color: colors.white,
