@@ -11,6 +11,7 @@ import useApi from "../hooks/useApi";
 
 function SearchScreen({ navigation, route }) {
   const [search, setSearch] = useState("");
+  const [genreFilter, setGenreFilter] = useState([]);
   const {
     data,
     error,
@@ -32,7 +33,12 @@ function SearchScreen({ navigation, route }) {
         value={search}
       />
       <View style={styles.modDiv}>
-        <ModBtn options={genre} title="Genre" />
+        <ModBtn
+          filter={genreFilter}
+          setFilter={setGenreFilter}
+          options={genre}
+          title="Genre"
+        />
       </View>
     </Screen>
   );
