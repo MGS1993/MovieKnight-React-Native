@@ -36,7 +36,7 @@ function Feed({ data, route, style }) {
             keyExtractor={(media) => media.id.toString()}
             renderItem={({ item }) => (
               <Card
-                imageUrl={item.backdrop_path}
+                imageUrl={item.backdrop_path || item.poster_path}
                 overView={item.overview}
                 title={item.title || item.name}
                 voteAverage={item.vote_average}

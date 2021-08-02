@@ -36,6 +36,15 @@ function SearchScreen({ navigation, route }) {
   //rearranges and renames object to match requirements of SelectBox
   const genre = arrayReArrange(data);
   //
+
+  const navigate = () => {
+    navigation.navigate(routes.FILTERED_SEARCH, {
+      funcName: mediaType === "movie" ? "advMovieSearch" : "advTvSearch",
+      funcVar: withGenre,
+    });
+    setGenreFilterVis(!genreFilterVis);
+  };
+
   return (
     <Screen style={styles.container}>
       {/* <AppSearchBar
@@ -54,17 +63,8 @@ function SearchScreen({ navigation, route }) {
         />
       </View>
 
-      <View>
-        <AppButton
-          onPress={() =>
-            navigation.navigate(routes.FILTERED_SEARCH, {
-              funcName:
-                mediaType === "movie" ? "advMovieSearch" : "advTvSearch",
-              funcVar: withGenre,
-            })
-          }
-          title="Search"
-        />
+      <View style={styles.searchContainer}>
+        <AppButton onPress={navigate} title="Search" />
       </View>
     </Screen>
   );
@@ -76,6 +76,10 @@ const styles = StyleSheet.create({
   },
   modDiv: {
     justifyContent: "space-evenly",
+  },
+  searchContainer: {
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 

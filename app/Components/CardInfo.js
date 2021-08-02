@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
     color: colors.white,
     fontSize: 20,
     fontWeight: "bold",
+    textAlign: "center",
   },
   topWrapper: {
     // flex: 1,
