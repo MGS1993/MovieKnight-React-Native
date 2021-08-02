@@ -66,7 +66,6 @@ function SearchHub({ navigation }) {
             width="40%"
             onPress={() =>
               navigation.navigate(routes.SEARCH_SCREEN, {
-                // funcName: "getMediaGenre",
                 mediaType: "movie",
               })
             }
@@ -76,9 +75,8 @@ function SearchHub({ navigation }) {
             title="Tv Shows"
             width="40%"
             onPress={() =>
-              navigation.navigate(routes.TRENDING_TV, {
-                funcName: "trendingByType",
-                funcVar: "tv",
+              navigation.navigate(routes.SEARCH_SCREEN, {
+                mediaType: "tv",
               })
             }
           />

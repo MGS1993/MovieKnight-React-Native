@@ -3,10 +3,15 @@ import { StyleSheet, View } from "react-native";
 
 import { SearchBar } from "react-native-elements";
 
-function AppSearchBar({ onChangeText, value }) {
+function AppSearchBar({ onChangeText, value, onSubmit }) {
   // if (!visible) return <View style={styles.substitute} />;
   return (
-    <SearchBar placeholder="Search" onChangeText={onChangeText} value={value} />
+    <SearchBar
+      placeholder="Search"
+      onChangeText={onChangeText}
+      onSubmitEditing={onSubmit}
+      value={value}
+    />
   );
 }
 

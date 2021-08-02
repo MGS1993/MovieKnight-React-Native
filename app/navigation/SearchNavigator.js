@@ -56,6 +56,11 @@ const SearchNavigator = () => (
       component={SearchScreen}
       options={{ title: "Advanced Search" }}
     />
+    <Stack.Screen
+      name="FilteredSearch"
+      component={Feed}
+      options={{ title: "Filtered Search" }}
+    />
   </Stack.Navigator>
 );
 

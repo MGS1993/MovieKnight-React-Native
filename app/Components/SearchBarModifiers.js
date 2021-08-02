@@ -8,15 +8,12 @@ import AppButton from "./AppButton";
 
 function SearchBarModifiers({ options, title, filter, setFilter }) {
   const [visible, setVisible] = useState(false);
-  // const [filter, setFilter] = useState([]);
-
-  // const options = [];
 
   const onMultiChange = () => {
     return (item) => setFilter(xorBy(filter, [item], "id"));
   };
 
-  if (visible === true && filter !== undefined) {
+  if (visible === true) {
     return (
       <TouchableWithoutFeedback>
         <>

@@ -67,7 +67,33 @@ const getTopMediaAllGenres = async (mediaType, voteCount) => {
   }
 };
 
+const advMovieSearch = async (genres) => {
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genres}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`
+    );
+    const data = await response.json();
+    return data.results;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const advTvSearch = async (genres) => {
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/discover/tv?api_key=${apiKey}&with_genres=${genres}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false&with_watch_monetization_types=flatrate`
+    );
+    const data = await response.json();
+    return data.results;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export default {
+  advMovieSearch,
+  advTvSearch,
   getTopMediaAllGenres,
   getMediaByGenre,
   getMediaGenre,
