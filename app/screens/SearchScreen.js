@@ -16,6 +16,7 @@ function SearchScreen({ navigation, route }) {
   // const [search, setSearch] = useState("");
   const [genreFilter, setGenreFilter] = useState([]);
   const [withGenre, setWithGenre] = useState();
+  const [genreFilterVis, setGenreFilterVis] = useState(false);
   const mediaType = route.params.mediaType;
   const {
     data,
@@ -48,6 +49,8 @@ function SearchScreen({ navigation, route }) {
           setFilter={setGenreFilter}
           options={genre}
           title="Genre"
+          visible={genreFilterVis}
+          setVisible={setGenreFilterVis}
         />
       </View>
 

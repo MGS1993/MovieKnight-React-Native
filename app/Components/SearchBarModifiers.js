@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Text, StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 import SelectBox from "react-native-multi-selectbox";
 import { xorBy } from "lodash";
@@ -6,9 +6,14 @@ import { xorBy } from "lodash";
 import colors from "../config/colors";
 import AppButton from "./AppButton";
 
-function SearchBarModifiers({ options, title, filter, setFilter }) {
-  const [visible, setVisible] = useState(false);
-
+function SearchBarModifiers({
+  options,
+  title,
+  filter,
+  setFilter,
+  visible,
+  setVisible,
+}) {
   const onMultiChange = () => {
     return (item) => setFilter(xorBy(filter, [item], "id"));
   };
