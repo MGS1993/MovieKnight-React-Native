@@ -67,9 +67,22 @@ const getTopMediaAllGenres = async (mediaType, voteCount) => {
   }
 };
 
+const getMediaDetails = async (mediaType, mediaId) => {
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/${mediaType}/${mediaId}?api_key=${apiKey}&language=en-US`
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export default {
-  getTopMediaAllGenres,
   getMediaByGenre,
+  getMediaDetails,
+  getTopMediaAllGenres,
   getMediaGenre,
   trendingByType,
   trendingMedia,

@@ -37,6 +37,8 @@ function Feed({ data, route, style }) {
             renderItem={({ item }) => (
               <Card
                 imageUrl={item.backdrop_path}
+                mediaType={item.media_type}
+                mediaId={item.id}
                 overView={item.overview}
                 title={item.title || item.name}
                 voteAverage={item.vote_average}
