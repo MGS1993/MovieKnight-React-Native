@@ -67,35 +67,22 @@ const getTopMediaAllGenres = async (mediaType, voteCount) => {
   }
 };
 
-const advMovieSearch = async (genres) => {
+const getMediaDetails = async (mediaType, mediaId) => {
   try {
     const response = await fetch(
-      `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genres}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`
+      `https://api.themoviedb.org/3/${mediaType}/${mediaId}?api_key=${apiKey}&language=en-US`
     );
     const data = await response.json();
-    return data.results;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-const advTvSearch = async (genres) => {
-  try {
-    const response = await fetch(
-      `https://api.themoviedb.org/3/discover/tv?api_key=${apiKey}&with_genres=${genres}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false&with_watch_monetization_types=flatrate`
-    );
-    const data = await response.json();
-    return data.results;
+    return data;
   } catch (error) {
     console.log(error);
   }
 };
 
 export default {
-  advMovieSearch,
-  advTvSearch,
-  getTopMediaAllGenres,
   getMediaByGenre,
+  getMediaDetails,
+  getTopMediaAllGenres,
   getMediaGenre,
   trendingByType,
   trendingMedia,

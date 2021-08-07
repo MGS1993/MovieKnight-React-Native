@@ -1,20 +1,28 @@
 import React from "react";
-import { StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
-import colors from "../config/colors";
 import { Image } from "react-native-expo-image-cache";
-import CardInfo from "./CardInfo";
+import { StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
+import { useNavigation } from "@react-navigation/core";
 
-function Card({ imageUrl, onPress, overView, title, voteAverage }) {
+import CardInfo from "./CardInfo";
+import colors from "../config/colors";
+import routes from "../navigation/routes";
+
+function Card({ imageUrl, mediaId, mediaType, overView, title, voteAverage }) {
+  const navigation = useNavigation();
+  const navigate = () => {
+    navigation.navigate(routes.MEDIA_DETAILS, {
+      mediaId: mediaId,
+      mediaType: mediaType,
+    });
+  };
   return (
-    <TouchableWithoutFeedback onPress={onPress}>
+    <TouchableWithoutFeedback onPress={navigate}>
       <View style={styles.card}>
         {/* left side of card */}
         <View style={styles.imageContainer}>
           <Image
             style={styles.image}
             //source is replaced by 'uri' due to different api in imported Image
-            // source={{ uri: "https://image.tmdb.org/t/p/w780/" + imageUrl }}
-            //preview is used as a thumbnail for progressive loading
             preview={{ uri: "https://image.tmdb.org/t/p/w300/" + imageUrl }}
             uri={"https://image.tmdb.org/t/p/w780/" + imageUrl}
             transitionDuration={100}
