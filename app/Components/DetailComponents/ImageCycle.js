@@ -2,6 +2,8 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import { Image } from "react-native-expo-image-cache";
 
+import colors from "../../config/colors";
+
 function ImageCycle({ imageUrl }) {
   return (
     <View style={styles.container}>
@@ -17,9 +19,11 @@ function ImageCycle({ imageUrl }) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: colors.cardBG,
+  },
   image: {
-    height: 300,
-    width: "80%",
+    height: 200,
   },
 });
 
