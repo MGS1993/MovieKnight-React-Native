@@ -1,4 +1,5 @@
 export default Object.freeze({
+  FILTERED_SEARCH: "FilteredSearch",
   MEDIA_DETAILS: "MediaDetails",
   SEARCH_SCREEN: "SearchScreen",
   TOP_MEDIA_ALL_GENRE: "TopMediaAllGenre",

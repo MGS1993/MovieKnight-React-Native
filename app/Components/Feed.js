@@ -9,7 +9,7 @@ import Screen from "../screens/Screen";
 import useApi from "../hooks/useApi";
 
 //TODO find a way to optimize the FlatList
-function Feed({ data, route, style }) {
+function Feed({ data, mediaSearch, route, style }) {
   let apiCall;
   let funcVar;
   let funcCall;
@@ -37,7 +37,7 @@ function Feed({ data, route, style }) {
             renderItem={({ item }) => (
               <Card
                 imageUrl={item.backdrop_path}
-                mediaType={item.media_type}
+                mediaType={item.media_type || route.params.mediaType}
                 mediaId={item.id}
                 overView={item.overview}
                 title={item.title || item.name}

@@ -15,6 +15,9 @@ function Card({ imageUrl, mediaId, mediaType, overView, title, voteAverage }) {
       mediaType: mediaType,
     });
   };
+  //some api calls don't have mediaType in props so mediaDetails becomes
+  //undefined. Find a way to get mediaDetails if it's not passed down.
+  //maybe a function to call the api on useeffect if no mediatype detected
   return (
     <TouchableWithoutFeedback onPress={navigate}>
       <View style={styles.card}>

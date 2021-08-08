@@ -40,6 +40,7 @@ function SearchHub({ navigation }) {
             navigation.navigate(routes.TRENDING_MOVIES, {
               funcName: `trendingByType`,
               funcVar: "movie",
+              mediaType: "movie",
             })
           }
         />
@@ -51,6 +52,7 @@ function SearchHub({ navigation }) {
             navigation.navigate(routes.TRENDING_TV, {
               funcName: "trendingByType",
               funcVar: "tv",
+              mediaType: "tv",
             })
           }
         />

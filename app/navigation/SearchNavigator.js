@@ -3,6 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import constants from "expo-constants";
 import Feed from "../Components/Feed";
+import MediaDetails from "../screens/MediaDetails";
 import TopSearch from "../screens/TopSearch";
 import SearchBTns from "../screens/SearchHub";
 import SearchScreen from "../screens/SearchScreen";
@@ -61,6 +62,7 @@ const SearchNavigator = () => (
       component={Feed}
       options={{ title: "Filtered Search" }}
     />
+    <Stack.Screen name="MediaDetails" component={MediaDetails} />
   </Stack.Navigator>
 );
 

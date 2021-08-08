@@ -41,6 +41,7 @@ function SearchScreen({ navigation, route }) {
     navigation.navigate(routes.FILTERED_SEARCH, {
       funcName: mediaType === "movie" ? "advMovieSearch" : "advTvSearch",
       funcVar: withGenre,
+      mediaType: route.params.mediaType,
     });
     setGenreFilterVis(!genreFilterVis);
   };
