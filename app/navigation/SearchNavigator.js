@@ -62,7 +62,11 @@ const SearchNavigator = () => (
       component={Feed}
       options={{ title: "Filtered Search" }}
     />
-    <Stack.Screen name="MediaDetails" component={MediaDetails} />
+    <Stack.Screen
+      name="MediaDetails"
+      component={MediaDetails}
+      options={{ headerShown: false }}
+    />
   </Stack.Navigator>
 );
 
