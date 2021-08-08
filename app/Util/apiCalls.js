@@ -103,6 +103,14 @@ const getMediaDetails = async (mediaType, mediaId) => {
   }
 };
 
+const getStreamData = async (mediaType, mediaId) => {
+  const response = await fetch(
+    `https://api.themoviedb.org/3/${mediaType}/${mediaId}/watch/providers?api_key=${apiKey}`
+  );
+  const data = await response.json();
+  return data.results;
+};
+
 export default {
   advMovieSearch,
   advTvSearch,
@@ -111,6 +119,7 @@ export default {
   getMediaDetails,
   getTopMediaAllGenres,
   getMediaGenre,
+  getStreamData,
   trendingByType,
   trendingMedia,
 };

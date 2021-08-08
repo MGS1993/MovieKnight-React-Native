@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { View, StyleSheet } from "react-native";
 import Constants from "expo-constants";
 
+import ActivityIndicator from "../Components/ActivityIndicator";
 import apiCalls from "../Util/apiCalls";
 import ImageCycle from "../Components/DetailComponents/ImageCycle";
 import OverView from "../Components/DetailComponents/OverView";
@@ -28,14 +29,20 @@ function MediaDetails({ route }) {
   }, []);
   return (
     <Screen style={styles.screen}>
-      <ImageCycle imageUrl={data.poster_path} />
-      <TitleBlock
-        mediaType={mediaType}
-        title={data.title || data.name}
-        yearReleased={data.release_date}
-      />
-      <OverView overview={data.overview} />
-      <ProviderInfo streamProviders={streamProviders} />
+      {loading ? (
+        <ActivityIndicator visible={loading} />
+      ) : (
+        <>
+          <ImageCycle imageUrl={data.poster_path} />
+          <TitleBlock
+            mediaType={mediaType}
+            title={data.title || data.name}
+            yearReleased={data.release_date}
+          />
+          <OverView overview={data.overview} />
+          <ProviderInfo streamProviders={streamProviders} />
+        </>
+      )}
     </Screen>
   );
 }

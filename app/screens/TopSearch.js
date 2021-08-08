@@ -10,6 +10,9 @@ import useApi from "../hooks/useApi";
 import { Picker } from "@react-native-picker/picker";
 
 function TopSearch({ route, navigation }) {
+  //TODO remove superfluous components for searching top genre of all times
+  // the functionality can be done in a more organic way.
+
   const {
     data: genre,
     error,
@@ -80,6 +83,7 @@ function TopSearch({ route, navigation }) {
                 funcName: "getTopMediaAllGenres",
                 funcVar: `${mediaType}`,
                 otherVar: 5000,
+                mediaType: mediaType,
               })
             }
           />
