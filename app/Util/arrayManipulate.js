@@ -18,14 +18,14 @@ const reduceArrLen = (data, size) => {
 
 const buildIconArray = (data) => {
   let newArr = [];
-
   const icon = {
     height: 65,
     margin: 5,
     width: 65,
   };
   const image = {
-    width: 65,
+    height: 65,
+    width: "100%",
   };
 
   data.forEach((el, index) => {
