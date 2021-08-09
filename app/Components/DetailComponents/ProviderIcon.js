@@ -11,14 +11,12 @@ function ProviderIcon({ data, title }) {
 
   // console.log(title, data);
 
+  //Icons minimized by passing state into arrayManipulate
   const expandIcons = (data) => {
     let arr = arrayManipulate.reduceArrLen(data, 6);
-    arrayManipulate.buildIconArray(arr);
-    let icons = arrayManipulate.buildIconArray(arr);
-
+    let icons = arrayManipulate.buildIconArray(arr, setIcon);
     setIcon(icons);
   };
-
   return (
     <TouchableWithoutFeedback onPress={() => expandIcons(data)}>
       <View style={styles.mainContainer}>

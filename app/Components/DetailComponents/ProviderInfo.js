@@ -2,6 +2,7 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 
 import colors from "../../config/colors";
+import IconPlaceholder from "./IconPlaceholder";
 import ProviderIcon from "./ProviderIcon";
 
 function ProviderInfo({ streamProviders }) {

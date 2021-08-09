@@ -1,5 +1,7 @@
 import React from "react";
-import { Image, View } from "react-native";
+import { Image, TouchableWithoutFeedback, View } from "react-native";
+
+import IconPlaceholder from "../Components/DetailComponents/IconPlaceholder";
 
 //turns obj id values into consolidated strings for search query
 const genreRearrange = (data) => {
@@ -16,7 +18,7 @@ const reduceArrLen = (data, size) => {
   return data.slice(0, size);
 };
 
-const buildIconArray = (data) => {
+const buildIconArray = (arr, setState) => {
   let newArr = [];
   const icon = {
     height: 65,
@@ -28,14 +30,18 @@ const buildIconArray = (data) => {
     width: "100%",
   };
 
-  data.forEach((el, index) => {
+  arr.forEach((el, index) => {
     newArr.push(
-      <View style={icon} name={el.provider_name} key={index}>
-        <Image
-          style={image}
-          source={{ uri: "https://image.tmdb.org/t/p/w92" + el.logo_path }}
-        />
-      </View>
+      <TouchableWithoutFeedback
+        onPress={() => setState(<IconPlaceholder key={index} />)}
+      >
+        <View style={icon} name={el.provider_name} key={index}>
+          <Image
+            style={image}
+            source={{ uri: "https://image.tmdb.org/t/p/w92" + el.logo_path }}
+          />
+        </View>
+      </TouchableWithoutFeedback>
     );
   });
 
