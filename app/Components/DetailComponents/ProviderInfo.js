@@ -8,21 +8,39 @@ import ProviderIcon from "./ProviderIcon";
 
 function ProviderInfo({ streamProviders }) {
   //TODO add multi country support
-  const [buyIcon, setBuyIcon] = useState(<IconPlaceholder />);
-  const [rentIcon, setRentIcon] = useState(<IconPlaceholder />);
-  const [flatrateIcon, setFlatrateIcon] = useState(<IconPlaceholder />);
-  const [tempBuyIcon, setTempBuyIcon] = useState(<IconPlaceholder />);
+  const [buyIcon, setBuyIcon] = useState(IconPlaceholder);
+  const [rentIcon, setRentIcon] = useState(IconPlaceholder);
+  const [flatrateIcon, setFlatrateIcon] = useState(IconPlaceholder);
+  const [tempBuyIcon, setTempBuyIcon] = useState(IconPlaceholder);
+
+  const [isOpen, setIsOpen] = useState(false);
 
   if (streamProviders?.US === undefined) return <View></View>;
   const { buy, flatrate, flatrate_and_buy: tempBuy, rent } = streamProviders.US;
 
   //Icons minimized by passing state into arrayManipulate
   const expandIcons = (data, setState) => {
+    checkState(data);
     let arr = arrayManipulate.reduceArrLen(data, 6);
     let icons = arrayManipulate.buildIconArray(arr, setState);
     setState(icons);
   };
 
+  const checkState = (data, setState) => {
+    const checkList = [buyIcon, rentIcon, flatrateIcon, tempBuyIcon];
+    const setStateList = [
+      setBuyIcon,
+      setRentIcon,
+      setFlatrateIcon,
+      setTempBuyIcon,
+    ];
+    checkList.forEach((el, index) => {
+      if (el.length > 1) {
+        const newState = setStateList[index];
+        newState(IconPlaceholder);
+      }
+    });
+  };
   return (
     <View style={styles.container}>
       <ProviderIcon
