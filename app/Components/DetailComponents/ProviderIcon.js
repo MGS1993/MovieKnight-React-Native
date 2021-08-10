@@ -1,24 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { View, StyleSheet, Text, TouchableWithoutFeedback } from "react-native";
 
-import arrayManipulate from "../../Util/arrayManipulate";
 import colors from "../../config/colors";
-import IconPlaceholder from "./IconPlaceholder";
 
-function ProviderIcon({ data, title }) {
+function ProviderIcon({ data, title, icon, onPress }) {
   if (data === undefined) return null;
-  const [icon, setIcon] = useState(<IconPlaceholder />);
 
-  // console.log(title, data);
-
-  //Icons minimized by passing state into arrayManipulate
-  const expandIcons = (data) => {
-    let arr = arrayManipulate.reduceArrLen(data, 6);
-    let icons = arrayManipulate.buildIconArray(arr, setIcon);
-    setIcon(icons);
-  };
+  //() => expandIcons(data)
   return (
-    <TouchableWithoutFeedback onPress={() => expandIcons(data)}>
+    <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.mainContainer}>
         <View>
           <Text style={styles.title}>{title}</Text>

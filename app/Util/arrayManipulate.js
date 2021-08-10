@@ -33,9 +33,10 @@ const buildIconArray = (arr, setState) => {
   arr.forEach((el, index) => {
     newArr.push(
       <TouchableWithoutFeedback
-        onPress={() => setState(<IconPlaceholder key={index} />)}
+        key={index}
+        onPress={() => setState(<IconPlaceholder />)}
       >
-        <View style={icon} name={el.provider_name} key={index}>
+        <View style={icon} name={el.provider_name}>
           <Image
             style={image}
             source={{ uri: "https://image.tmdb.org/t/p/w92" + el.logo_path }}

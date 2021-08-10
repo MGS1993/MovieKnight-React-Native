@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { View, StyleSheet } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 import Constants from "expo-constants";
 
 import ActivityIndicator from "../Components/ActivityIndicator";
@@ -29,20 +29,22 @@ function MediaDetails({ route }) {
   }, []);
   return (
     <Screen style={styles.screen}>
-      {loading ? (
-        <ActivityIndicator visible={loading} />
-      ) : (
-        <>
-          <ImageCycle imageUrl={data.poster_path} />
-          <TitleBlock
-            mediaType={mediaType}
-            title={data.title || data.name}
-            yearReleased={data.release_date}
-          />
-          <OverView overview={data.overview} />
-          <ProviderInfo streamProviders={streamProviders} />
-        </>
-      )}
+      <ScrollView>
+        {loading ? (
+          <ActivityIndicator visible={loading} />
+        ) : (
+          <>
+            <ImageCycle imageUrl={data.poster_path} />
+            <TitleBlock
+              mediaType={mediaType}
+              title={data.title || data.name}
+              yearReleased={data.release_date}
+            />
+            <OverView overview={data.overview} />
+            <ProviderInfo streamProviders={streamProviders} />
+          </>
+        )}
+      </ScrollView>
     </Screen>
   );
 }
@@ -50,6 +52,7 @@ function MediaDetails({ route }) {
 const styles = StyleSheet.create({
   screen: {
     marginTop: Constants.statusBarHeight,
+    height: "auto",
   },
 });
 
