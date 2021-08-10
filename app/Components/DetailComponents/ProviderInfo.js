@@ -26,7 +26,7 @@ function ProviderInfo({ streamProviders }) {
     setState(icons);
   };
 
-  const checkState = (data, setState) => {
+  const checkState = (data) => {
     const checkList = [buyIcon, rentIcon, flatrateIcon, tempBuyIcon];
     const setStateList = [
       setBuyIcon,
