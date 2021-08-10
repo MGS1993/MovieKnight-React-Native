@@ -13,20 +13,19 @@ function ProviderInfo({ streamProviders }) {
   const [flatrateIcon, setFlatrateIcon] = useState(IconPlaceholder);
   const [tempBuyIcon, setTempBuyIcon] = useState(IconPlaceholder);
 
-  const [isOpen, setIsOpen] = useState(false);
-
   if (streamProviders?.US === undefined) return <View></View>;
   const { buy, flatrate, flatrate_and_buy: tempBuy, rent } = streamProviders.US;
 
   //Icons minimized by passing state into arrayManipulate
   const expandIcons = (data, setState) => {
-    checkState(data);
+    //checks if any other providerIcons are open and closes them
+    checkState();
     let arr = arrayManipulate.reduceArrLen(data, 6);
     let icons = arrayManipulate.buildIconArray(arr, setState);
     setState(icons);
   };
 
-  const checkState = (data) => {
+  const checkState = () => {
     const checkList = [buyIcon, rentIcon, flatrateIcon, tempBuyIcon];
     const setStateList = [
       setBuyIcon,

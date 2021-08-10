@@ -20,7 +20,7 @@ function ImageCycle({ imageUrl }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.cardBG,
+    backgroundColor: colors.black,
   },
   image: {
     height: 200,
