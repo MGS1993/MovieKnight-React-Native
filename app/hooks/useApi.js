@@ -17,7 +17,16 @@ const useApi = (apiFunc) => {
       return setError(true);
     }
   };
-  return { data, error, loading, request };
+
+  const addToList = async (newData) => {
+    try {
+      let newState = [...data, ...newData];
+      setData(newState);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  return { data, error, loading, request, addToList };
 };
 
 export default useApi;
