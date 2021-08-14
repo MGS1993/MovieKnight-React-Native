@@ -7,12 +7,15 @@ import colors from "../config/colors";
 import routes from "../navigation/routes";
 import Screen from "./Screen";
 
+import apiCalls from "../Util/apiCalls";
+
 function SearchHub({ navigation }) {
   const [search, setSearch] = useState("");
 
   // const updateSearch = (search) => {
   //   setSearch
   // }
+
   return (
     <Screen style={styles.container}>
       <View style={styles.searchWrapper}>
@@ -21,7 +24,12 @@ function SearchHub({ navigation }) {
           <SearchBar
             onChangeText={(search) => setSearch(search)}
             value={search}
-            onSubmit={() => console.log(search)}
+            onSubmit={() =>
+              navigation.navigate(routes.SEARCH_RESULTS, {
+                funcName: "multiSearch",
+                funcVar: search,
+              })
+            }
           />
         </View>
         <View style={styles.manualSearch}>

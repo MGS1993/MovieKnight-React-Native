@@ -111,6 +111,15 @@ const getStreamData = async (mediaType, mediaId) => {
   return data.results;
 };
 
+const multiSearch = async (queryStr) => {
+  const response = await fetch(
+    `https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&language=en-US&query=${queryStr}&page=1&include_adult=false`
+  );
+  const data = await response.json();
+  // console.log(data);
+  return data.results;
+};
+
 export default {
   advMovieSearch,
   advTvSearch,
@@ -119,6 +128,7 @@ export default {
   getMediaDetails,
   getMediaGenre,
   getStreamData,
+  multiSearch,
   trendingByType,
   trendingMedia,
 };

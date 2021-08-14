@@ -67,6 +67,11 @@ const SearchNavigator = () => (
       component={MediaDetails}
       options={{ headerShown: false }}
     />
+    <Stack.Screen
+      name="SearchResults"
+      component={Feed}
+      options={{ title: "Multi Search" }}
+    />
   </Stack.Navigator>
 );
 

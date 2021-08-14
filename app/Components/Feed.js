@@ -42,12 +42,7 @@ function Feed({ data, route, style }) {
   }, [page]);
 
   const updatePage = () => {
-    if (
-      !route ||
-      route.name === "TrendingMovies" ||
-      route.name === "TrendingTv"
-    )
-      return null;
+    if (!route || route.name !== "FilteredSearch") return null;
     setPage((page) => page + 1);
   };
   return (
@@ -62,7 +57,9 @@ function Feed({ data, route, style }) {
             onEndReachedThreshold={0.5}
             renderItem={({ item }) => (
               <Card
-                imageUrl={item.backdrop_path}
+                imageUrl={
+                  item.backdrop_path || item.poster_path || item.profile_path
+                }
                 mediaType={item.media_type || route.params.mediaType}
                 mediaId={item.id}
                 overView={item.overview}
