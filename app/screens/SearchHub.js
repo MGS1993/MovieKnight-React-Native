@@ -11,7 +11,7 @@ function SearchHub({ navigation }) {
   return (
     <Screen style={styles.container}>
       <View style={styles.trendingWrapper}>
-        <AppButton
+        {/* <AppButton
           style={styles.btnStyle}
           title="Top Movies"
           width="40%"
@@ -30,7 +30,7 @@ function SearchHub({ navigation }) {
               mediaType: "tv",
             })
           }
-        />
+        /> */}
 
         <AppButton
           style={styles.btnStyle}

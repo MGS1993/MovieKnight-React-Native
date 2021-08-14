@@ -32,7 +32,7 @@ const SearchNavigator = () => (
       component={Feed}
       options={{ title: "Trending TV Shows" }}
     />
-    <Stack.Screen
+    {/* <Stack.Screen
       name="TopMovies"
       component={TopSearch}
       options={{ title: "Top Movies" }}
@@ -51,7 +51,7 @@ const SearchNavigator = () => (
       name="TopMediaAllGenre"
       component={Feed}
       options={{ title: "Top by Genre" }}
-    />
+    /> */}
     <Stack.Screen
       name="SearchScreen"
       component={SearchScreen}
