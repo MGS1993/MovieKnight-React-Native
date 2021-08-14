@@ -23,20 +23,32 @@ function Feed({ data, route, style }) {
       funcCall.request(funcVar, otherVar, voteCount, page);
     }, []);
   }
+  //PAGE ISN'T UPDATED IN THE FUNCTION ITSELF. MAYBE MOVE THE SETPAGE
+  //LOGIC OUTSIDE
 
   //if HomeScreen empty Object if Routes FuncCall
   const { data: resData, error, loading, request } = funcCall || {};
+  console.log(page);
 
-  const handleEnd = async () => {
+  const getNextPage = async () => {
     if (!route) return null;
+    console.log("immediately after setting page", page);
     try {
-      setPage((page) => page + 1);
+      console.log("page before newData", page);
       let newData = await apiCall(funcVar, page);
+      console.log(newData);
       funcCall.addToList(newData);
     } catch (error) {
       console.log(error);
     }
   };
+  useEffect(() => {
+    getNextPage();
+  }, [page]);
+  // const handleEnd = () => {
+
+  //   getNextPage();
+  // };
   return (
     <Screen style={style}>
       {data || route !== undefined ? (
@@ -45,7 +57,7 @@ function Feed({ data, route, style }) {
           <FlatList
             data={data || resData}
             keyExtractor={(media) => media.id.toString()}
-            onEndReached={handleEnd}
+            onEndReached={() => setPage((page) => page + 1)}
             onEndReachedThreshold={0.5}
             renderItem={({ item }) => (
               <Card
