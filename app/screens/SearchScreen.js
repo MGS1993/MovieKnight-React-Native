@@ -15,8 +15,13 @@ import useApi from "../hooks/useApi";
 function SearchScreen({ navigation, route }) {
   // const [search, setSearch] = useState("");
   const [genreFilter, setGenreFilter] = useState([]);
+  const [withoutGenreFil, setWithoutGenreFil] = useState([]);
+
   const [withGenre, setWithGenre] = useState();
+  const [withoutGenre, setWithoutGenre] = useState();
+
   const [genreFilterVis, setGenreFilterVis] = useState(false);
+  const [withoutGenreFilterVis, setWithoutGenreFilterVis] = useState(false);
   const mediaType = route.params.mediaType;
   const {
     data,
@@ -28,10 +33,16 @@ function SearchScreen({ navigation, route }) {
   useEffect(() => {
     getGenre(mediaType);
   }, []);
+
   useEffect(() => {
     let genreQuery = arrayManipulate.genreRearrange(genreFilter);
     setWithGenre(genreQuery);
   }, [genreFilter]);
+
+  useEffect(() => {
+    let withoutGenreQuery = arrayManipulate.genreRearrange(withoutGenreFil);
+    setWithoutGenre(withoutGenreQuery);
+  }, [withoutGenreFil]);
 
   //rearranges and renames object to match requirements of SelectBox
   const genre = arrayReArrange(data);
@@ -41,6 +52,7 @@ function SearchScreen({ navigation, route }) {
     navigation.navigate(routes.FILTERED_SEARCH, {
       funcName: mediaType === "movie" ? "advMovieSearch" : "advTvSearch",
       funcVar: withGenre,
+      otherVar: withoutGenre,
       mediaType: route.params.mediaType,
     });
     setGenreFilterVis(!genreFilterVis);
@@ -48,19 +60,22 @@ function SearchScreen({ navigation, route }) {
 
   return (
     <Screen style={styles.container}>
-      {/* <AppSearchBar
-        value={search}
-        onChangeText={(search) => setSearch(search)}
-        // onSubmit={}
-      /> */}
       <View style={styles.modDiv}>
         <ModBtn
           filter={genreFilter}
           setFilter={setGenreFilter}
           options={genre}
-          title="Genre"
+          title="With Genre"
           visible={genreFilterVis}
           setVisible={setGenreFilterVis}
+        />
+        <ModBtn
+          filter={withoutGenreFil}
+          setFilter={setWithoutGenreFil}
+          options={genre}
+          title="Without Genre"
+          visible={withoutGenreFilterVis}
+          setVisible={setWithoutGenreFilterVis}
         />
       </View>
 
@@ -79,8 +94,10 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
   },
   searchContainer: {
-    alignItems: "center",
-    justifyContent: "center",
+    bottom: 0,
+    margin: "5%",
+    position: "absolute",
+    width: "100%",
   },
 });
 

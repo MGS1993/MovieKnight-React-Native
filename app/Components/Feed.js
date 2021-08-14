@@ -30,7 +30,7 @@ function Feed({ data, route, style }) {
   const getNextPage = async () => {
     if (!route) return null;
     try {
-      let newData = await apiCall(funcVar, page);
+      let newData = await apiCall(funcVar, otherVar, page);
       //gets funcCall object if not homepage
       funcCall.addToList(newData);
     } catch (error) {

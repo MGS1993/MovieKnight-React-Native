@@ -54,7 +54,7 @@ function SearchBarModifiers({
   }
   return (
     <View style={styles.unToggled}>
-      <Text style={styles.text}>Set {`${title}`} filter</Text>
+      <Text style={styles.text}>Set {`${title}`}</Text>
       <AppButton
         style={styles.button}
         onPress={() => setVisible(!visible)}
@@ -71,6 +71,7 @@ const styles = StyleSheet.create({
   button: {
     height: 50,
     fontSize: 18,
+    margin: 20,
     width: "30%",
   },
   inputFilterContainer: {
@@ -104,6 +105,7 @@ const styles = StyleSheet.create({
     color: colors.accent,
     fontSize: 18,
     fontWeight: "bold",
+    marginHorizontal: 20,
   },
   unToggled: {
     margin: 20,
