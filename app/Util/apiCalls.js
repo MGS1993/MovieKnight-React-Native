@@ -67,9 +67,8 @@ const getTopMediaAllGenres = async (mediaType, voteCount) => {
   }
 };
 
-const advMovieSearch = async (genres, page, resData) => {
+const advMovieSearch = async (genres, page) => {
   try {
-    console.log("page insdie advMovieSearch", page);
     const response = await fetch(
       `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genres}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_watch_monetization_types=flatrate`
     );
@@ -80,10 +79,10 @@ const advMovieSearch = async (genres, page, resData) => {
   }
 };
 
-const advTvSearch = async (genres) => {
+const advTvSearch = async (genres, page) => {
   try {
     const response = await fetch(
-      `https://api.themoviedb.org/3/discover/tv?api_key=${apiKey}&with_genres=${genres}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false&with_watch_monetization_types=flatrate`
+      `https://api.themoviedb.org/3/discover/tv?api_key=${apiKey}&with_genres=${genres}&language=en-US&sort_by=popularity.desc&page=${page}&timezone=America%2FNew_York&include_null_first_air_dates=false&with_watch_monetization_types=flatrate`
     );
     const data = await response.json();
     return data.results;
