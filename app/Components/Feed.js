@@ -42,7 +42,12 @@ function Feed({ data, route, style }) {
   }, [page]);
 
   const updatePage = () => {
-    if (!route) return null;
+    if (
+      !route ||
+      route.name === "TrendingMovies" ||
+      route.name === "TrendingTv"
+    )
+      return null;
     setPage((page) => page + 1);
   };
   return (

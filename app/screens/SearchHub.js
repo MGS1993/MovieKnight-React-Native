@@ -10,6 +10,33 @@ import Screen from "./Screen";
 function SearchHub({ navigation }) {
   return (
     <Screen style={styles.container}>
+      <View style={styles.searchWrapper}>
+        <View>
+          <Text style={styles.text}>Search</Text>
+        </View>
+        <View style={styles.manualSearch}>
+          <AppButton
+            style={styles.btnStyle}
+            title="Movies"
+            width="40%"
+            onPress={() =>
+              navigation.navigate(routes.SEARCH_SCREEN, {
+                mediaType: "movie",
+              })
+            }
+          />
+          <AppButton
+            style={styles.btnStyle}
+            title="Tv Shows"
+            width="40%"
+            onPress={() =>
+              navigation.navigate(routes.SEARCH_SCREEN, {
+                mediaType: "tv",
+              })
+            }
+          />
+        </View>
+      </View>
       <View style={styles.trendingWrapper}>
         {/* <AppButton
           style={styles.btnStyle}
@@ -57,41 +84,11 @@ function SearchHub({ navigation }) {
           }
         />
       </View>
-      <View style={styles.searchWrapper}>
-        <View>
-          <Text style={styles.text}>Search for...</Text>
-        </View>
-        <View style={styles.manualSearch}>
-          <AppButton
-            style={styles.btnStyle}
-            title="Movies"
-            width="40%"
-            onPress={() =>
-              navigation.navigate(routes.SEARCH_SCREEN, {
-                mediaType: "movie",
-              })
-            }
-          />
-          <AppButton
-            style={styles.btnStyle}
-            title="Tv Shows"
-            width="40%"
-            onPress={() =>
-              navigation.navigate(routes.SEARCH_SCREEN, {
-                mediaType: "tv",
-              })
-            }
-          />
-        </View>
-      </View>
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
-  advSearchBtn: {
-    top: 30,
-  },
   btnStyle: {
     borderRadius: 15,
     height: 55,
@@ -107,19 +104,19 @@ const styles = StyleSheet.create({
   },
   searchWrapper: {
     flexDirection: "column",
-    top: "35%",
+    // top: "35%",
   },
   text: {
     alignSelf: "center",
     color: colors.accent,
-    fontSize: 24,
+    fontSize: 34,
     fontWeight: "bold",
   },
   trendingWrapper: {
     alignItems: "center",
     flexDirection: "row",
     flexWrap: "wrap",
-    top: "45%",
+    // top: "45%",
     justifyContent: "space-evenly",
   },
 });
