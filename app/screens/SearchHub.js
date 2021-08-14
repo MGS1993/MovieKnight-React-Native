@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, StyleSheet, Text } from "react-native";
 
 import AppButton from "../Components/AppButton";
@@ -8,11 +8,21 @@ import routes from "../navigation/routes";
 import Screen from "./Screen";
 
 function SearchHub({ navigation }) {
+  const [search, setSearch] = useState("");
+
+  // const updateSearch = (search) => {
+  //   setSearch
+  // }
   return (
     <Screen style={styles.container}>
       <View style={styles.searchWrapper}>
         <View>
           <Text style={styles.text}>Search</Text>
+          <SearchBar
+            onChangeText={(search) => setSearch(search)}
+            value={search}
+            onSubmit={() => console.log(search)}
+          />
         </View>
         <View style={styles.manualSearch}>
           <AppButton
