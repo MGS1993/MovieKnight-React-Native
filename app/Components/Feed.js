@@ -9,7 +9,6 @@ import Screen from "../screens/Screen";
 import useApi from "../hooks/useApi";
 
 //TODO find a way to optimize the FlatList
-//TODO: check if variable order rin request affects functions
 function Feed({ data, route, style }) {
   const [page, setPage] = useState(1);
   let apiCall = apiCalls[route?.params.funcName]; // gets apiCall from import
