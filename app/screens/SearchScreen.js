@@ -1,27 +1,26 @@
 import React, { useState, useEffect } from "react";
-import { View, StyleSheet, Button } from "react-native";
-import Constants from "expo-constants";
+import { View, StyleSheet } from "react-native";
 
 import apiCalls from "../Util/apiCalls";
 import AppButton from "../Components/AppButton";
 import arrayManipulate from "../Util/arrayManipulate";
-// import AppSearchBar from "../Components/SearchBar";
 import arrayReArrange from "../Util/arrayReArrange";
 import ModBtn from "../Components/SearchBarModifiers";
 import routes from "../navigation/routes";
 import Screen from "./Screen";
 import useApi from "../hooks/useApi";
+import colors from "../config/colors";
 
+//TODO prevent user from being able to select conflicting genres
 function SearchScreen({ navigation, route }) {
-  // const [search, setSearch] = useState("");
   const [genreFilter, setGenreFilter] = useState([]);
   const [withoutGenreFil, setWithoutGenreFil] = useState([]);
 
   const [withGenre, setWithGenre] = useState();
   const [withoutGenre, setWithoutGenre] = useState();
 
-  const [genreFilterVis, setGenreFilterVis] = useState(false);
-  const [withoutGenreFilterVis, setWithoutGenreFilterVis] = useState(false);
+  const [genreFilterVis, setGenreFilterVis] = useState(true);
+  const [withoutGenreFilterVis, setWithoutGenreFilterVis] = useState(true);
   const mediaType = route.params.mediaType;
   const {
     data,
@@ -64,6 +63,7 @@ function SearchScreen({ navigation, route }) {
         <ModBtn
           filter={genreFilter}
           setFilter={setGenreFilter}
+          optionColor={colors.safe}
           options={genre}
           title="With Genre"
           visible={genreFilterVis}
@@ -72,6 +72,7 @@ function SearchScreen({ navigation, route }) {
         <ModBtn
           filter={withoutGenreFil}
           setFilter={setWithoutGenreFil}
+          optionColor={colors.danger}
           options={genre}
           title="Without Genre"
           visible={withoutGenreFilterVis}

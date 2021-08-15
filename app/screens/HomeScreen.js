@@ -6,6 +6,7 @@ import apiCalls from "../Util/apiCalls";
 import Feed from "../Components/Feed";
 import useApi from "../hooks/useApi";
 
+//TODO once backend is implemented, remove feed and set up tracked shows
 function HomeScreen(props) {
   const {
     data,

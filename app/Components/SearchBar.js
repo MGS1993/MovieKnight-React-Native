@@ -5,7 +5,6 @@ import Constants from "expo-constants";
 import { SearchBar } from "react-native-elements";
 
 function AppSearchBar({ onChangeText, value, onSubmit }) {
-  // if (!visible) return <View style={styles.substitute} />;
   return (
     <View style={styles.mainWrapper}>
       <SearchBar

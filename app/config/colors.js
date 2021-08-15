@@ -8,4 +8,5 @@ export default {
   lightGray: "#e5e5e5",
   mainBG: "#022249",
   white: "white",
+  safe: "#009900",
 };

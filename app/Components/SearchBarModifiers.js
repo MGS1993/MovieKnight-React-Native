@@ -4,75 +4,50 @@ import SelectBox from "react-native-multi-selectbox";
 import { xorBy } from "lodash";
 
 import colors from "../config/colors";
-import AppButton from "./AppButton";
 
 function SearchBarModifiers({
+  optionColor,
   options,
   title,
   filter,
   setFilter,
-  visible,
-  setVisible,
 }) {
   const onMultiChange = () => {
     return (item) => setFilter(xorBy(filter, [item], "id"));
   };
 
-  if (visible === true) {
-    return (
-      <TouchableWithoutFeedback>
-        <>
-          <View style={styles.mainWrapper}>
-            <Text style={styles.text}>Select {`${title}`}</Text>
-            <SelectBox
-              arrowIconColor={colors.accent}
-              containerStyle={styles.container}
-              label="Select multiple"
-              labelStyle={styles.label}
-              isMulti
-              inputFilterContainerStyle={styles.inputFilterContainer}
-              multiOptionContainerStyle={styles.multiOptionContainer}
-              multiOptionsLabelStyle={styles.multiOptionsLabel}
-              onMultiSelect={onMultiChange()}
-              onTapClose={onMultiChange()}
-              options={options}
-              optionContainerStyle={styles.optionContainer}
-              optionsLabelStyle={styles.optionLabel}
-              selectedValues={filter}
-              searchIconColor={colors.accent}
-              toggleIconColor={colors.accent}
-            />
-          </View>
-          <AppButton
-            style={styles.button}
-            onPress={() => setVisible(!visible)}
-            title="Close"
-          />
-        </>
-      </TouchableWithoutFeedback>
-    );
-  }
   return (
-    <View style={styles.unToggled}>
-      <Text style={styles.text}>Set {`${title}`}</Text>
-      <AppButton
-        style={styles.button}
-        onPress={() => setVisible(!visible)}
-        title="Toggle"
-      />
-    </View>
+    <TouchableWithoutFeedback>
+      <>
+        <View style={styles.mainWrapper}>
+          <Text style={styles.text}>Select {`${title}`}</Text>
+          <SelectBox
+            arrowIconColor={colors.accent}
+            containerStyle={styles.container}
+            label="Select multiple"
+            labelStyle={styles.label}
+            isMulti
+            inputFilterContainerStyle={styles.inputFilterContainer}
+            multiOptionContainerStyle={{ backgroundColor: optionColor }}
+            multiOptionsLabelStyle={styles.multiOptionsLabel}
+            onMultiSelect={onMultiChange()}
+            onTapClose={onMultiChange()}
+            options={options}
+            optionContainerStyle={styles.optionContainer}
+            optionsLabelStyle={styles.optionLabel}
+            selectedValues={filter}
+            searchIconColor={colors.accent}
+            toggleIconColor={colors.accent}
+          />
+        </View>
+      </>
+    </TouchableWithoutFeedback>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.mainBG,
-  },
-  button: {
-    height: 50,
-    fontSize: 18,
-    margin: 20,
-    width: "30%",
   },
   inputFilterContainer: {
     backgroundColor: colors.white,
@@ -86,10 +61,8 @@ const styles = StyleSheet.create({
   },
   mainWrapper: {
     alignSelf: "center",
+    marginVertical: 20,
     width: "90%",
-  },
-  multiOptionContainer: {
-    backgroundColor: colors.accent,
   },
   multiOptionsLabel: {
     fontSize: 16,
@@ -106,9 +79,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     marginHorizontal: 20,
-  },
-  unToggled: {
-    margin: 20,
   },
 });
 
