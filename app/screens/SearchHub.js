@@ -12,10 +12,6 @@ import apiCalls from "../Util/apiCalls";
 function SearchHub({ navigation }) {
   const [search, setSearch] = useState("");
 
-  // const updateSearch = (search) => {
-  //   setSearch
-  // }
-
   return (
     <Screen style={styles.container}>
       <View style={styles.searchWrapper}>

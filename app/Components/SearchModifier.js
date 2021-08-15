@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Text, StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 import SelectBox from "react-native-multi-selectbox";
 import { xorBy } from "lodash";
 
+import Arrow from "./Arrow";
 import colors from "../config/colors";
 
 function SearchBarModifiers({
@@ -12,36 +13,39 @@ function SearchBarModifiers({
   filter,
   setFilter,
 }) {
+  const [isOpen, setIsOpen] = useState(false);
+
   const onMultiChange = () => {
     return (item) => setFilter(xorBy(filter, [item], "id"));
   };
-
   return (
-    <TouchableWithoutFeedback>
-      <>
-        <View style={styles.mainWrapper}>
-          <Text style={styles.text}>Select {`${title}`}</Text>
-          <SelectBox
-            arrowIconColor={colors.accent}
-            containerStyle={styles.container}
-            label="Select multiple"
-            labelStyle={styles.label}
-            isMulti
-            inputFilterContainerStyle={styles.inputFilterContainer}
-            multiOptionContainerStyle={{ backgroundColor: optionColor }}
-            multiOptionsLabelStyle={styles.multiOptionsLabel}
-            onMultiSelect={onMultiChange()}
-            onTapClose={onMultiChange()}
-            options={options}
-            optionContainerStyle={styles.optionContainer}
-            optionsLabelStyle={styles.optionLabel}
-            selectedValues={filter}
-            searchIconColor={colors.accent}
-            toggleIconColor={colors.accent}
-          />
-        </View>
-      </>
-    </TouchableWithoutFeedback>
+    <>
+      <View style={styles.mainWrapper}>
+        <Text style={styles.text}>Select {`${title}`}</Text>
+
+        <SelectBox
+          arrowIconColor={colors.accent}
+          containerStyle={styles.container}
+          label="Select multiple"
+          labelStyle={styles.label}
+          isMulti
+          inputFilterContainerStyle={styles.inputFilterContainer}
+          multiOptionContainerStyle={{ backgroundColor: optionColor }}
+          multiOptionsLabelStyle={styles.multiOptionsLabel}
+          onMultiSelect={onMultiChange()}
+          onTapClose={onMultiChange()}
+          options={options}
+          optionContainerStyle={styles.optionContainer}
+          optionsLabelStyle={styles.optionLabel}
+          selectedValues={filter}
+          // selectIcon={
+          //   <Arrow isOpen={isOpen} onPress={() => setIsOpen(!isOpen)} />
+          // }
+          searchIconColor={colors.accent}
+          toggleIconColor={colors.accent}
+        />
+      </View>
+    </>
   );
 }
 
@@ -63,6 +67,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginVertical: 20,
     width: "90%",
+    elevation: 2,
   },
   multiOptionsLabel: {
     fontSize: 16,

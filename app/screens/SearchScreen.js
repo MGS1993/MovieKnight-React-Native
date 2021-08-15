@@ -5,13 +5,15 @@ import apiCalls from "../Util/apiCalls";
 import AppButton from "../Components/AppButton";
 import arrayManipulate from "../Util/arrayManipulate";
 import arrayReArrange from "../Util/arrayReArrange";
-import ModBtn from "../Components/SearchBarModifiers";
+import colors from "../config/colors";
+import ErrorNotice from "../Components/ErrorNotice";
+import ModBtn from "../Components/SearchModifier";
 import routes from "../navigation/routes";
 import Screen from "./Screen";
 import useApi from "../hooks/useApi";
-import colors from "../config/colors";
 
 //TODO prevent user from being able to select conflicting genres
+//TODO clean up code for button horizontal margin
 function SearchScreen({ navigation, route }) {
   const [genreFilter, setGenreFilter] = useState([]);
   const [withoutGenreFil, setWithoutGenreFil] = useState([]);
@@ -21,6 +23,8 @@ function SearchScreen({ navigation, route }) {
 
   const [genreFilterVis, setGenreFilterVis] = useState(true);
   const [withoutGenreFilterVis, setWithoutGenreFilterVis] = useState(true);
+
+  const [genreConflict, setGenreConflict] = useState(false);
   const mediaType = route.params.mediaType;
   const {
     data,
@@ -42,6 +46,12 @@ function SearchScreen({ navigation, route }) {
     let withoutGenreQuery = arrayManipulate.genreRearrange(withoutGenreFil);
     setWithoutGenre(withoutGenreQuery);
   }, [withoutGenreFil]);
+
+  useEffect(() => {
+    setGenreConflict(
+      arrayManipulate.findCommonElements(withGenre, withoutGenre)
+    );
+  }, [withGenre, withoutGenre]);
 
   //rearranges and renames object to match requirements of SelectBox
   const genre = arrayReArrange(data);
@@ -81,7 +91,15 @@ function SearchScreen({ navigation, route }) {
       </View>
 
       <View style={styles.searchContainer}>
-        <AppButton onPress={navigate} title="Search" />
+        {genreConflict ? (
+          <ErrorNotice />
+        ) : (
+          <AppButton
+            onPress={navigate}
+            title="Search"
+            style={{ marginHorizontal: "5%" }}
+          />
+        )}
       </View>
     </Screen>
   );
@@ -96,9 +114,10 @@ const styles = StyleSheet.create({
   },
   searchContainer: {
     bottom: 0,
-    margin: "5%",
+    marginVertical: "5%",
     position: "absolute",
     width: "100%",
+    justifyContent: "center",
   },
 });
 

@@ -49,8 +49,21 @@ const buildIconArray = (arr, setState) => {
   return newArr;
 };
 
+const findCommonElements = (str1, str2) => {
+  //turns str into arr if needed for array method
+  //if statement specific to SearchScreen
+  if (typeof str1 === "string" && typeof str2 === "string") {
+    let arr1 = str1.split(",");
+    let arr2 = str2.split(",");
+    if (arr1[0] !== "" && arr2[0] !== "") {
+      return arr1.some((item) => arr2.includes(item));
+    }
+  }
+};
+
 export default {
   buildIconArray,
   genreRearrange,
   reduceArrLen,
+  findCommonElements,
 };
