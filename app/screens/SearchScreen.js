@@ -17,12 +17,11 @@ import useApi from "../hooks/useApi";
 function SearchScreen({ navigation, route }) {
   const [genreFilter, setGenreFilter] = useState([]);
   const [withoutGenreFil, setWithoutGenreFil] = useState([]);
+  const [isWithGenreOpen, setIsWithGenreOpen] = useState(false);
 
   const [withGenre, setWithGenre] = useState();
   const [withoutGenre, setWithoutGenre] = useState();
-
-  const [genreFilterVis, setGenreFilterVis] = useState(true);
-  const [withoutGenreFilterVis, setWithoutGenreFilterVis] = useState(true);
+  const [isWithoutGenreOpen, setIsWithoutGenreOpen] = useState(false);
 
   const [genreConflict, setGenreConflict] = useState(false);
   const mediaType = route.params.mediaType;
@@ -64,7 +63,6 @@ function SearchScreen({ navigation, route }) {
       otherVar: withoutGenre,
       mediaType: route.params.mediaType,
     });
-    setGenreFilterVis(!genreFilterVis);
   };
 
   return (
@@ -76,8 +74,8 @@ function SearchScreen({ navigation, route }) {
           optionColor={colors.safe}
           options={genre}
           title="With Genre"
-          visible={genreFilterVis}
-          setVisible={setGenreFilterVis}
+          isOpen={isWithGenreOpen}
+          setIsOpen={setIsWithGenreOpen}
         />
         <ModBtn
           filter={withoutGenreFil}
@@ -85,8 +83,8 @@ function SearchScreen({ navigation, route }) {
           optionColor={colors.danger}
           options={genre}
           title="Without Genre"
-          visible={withoutGenreFilterVis}
-          setVisible={setWithoutGenreFilterVis}
+          isOpen={isWithoutGenreOpen}
+          setIsOpen={setIsWithoutGenreOpen}
         />
       </View>
 

@@ -12,8 +12,10 @@ function SearchBarModifiers({
   title,
   filter,
   setFilter,
+  isOpen,
+  setIsOpen,
 }) {
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
 
   const onMultiChange = () => {
     return (item) => setFilter(xorBy(filter, [item], "id"));
@@ -38,9 +40,9 @@ function SearchBarModifiers({
           optionContainerStyle={styles.optionContainer}
           optionsLabelStyle={styles.optionLabel}
           selectedValues={filter}
-          // selectIcon={
-          //   <Arrow isOpen={isOpen} onPress={() => setIsOpen(!isOpen)} />
-          // }
+          selectIcon={
+            <Arrow isOpen={isOpen} onPress={() => setIsOpen(!isOpen)} />
+          }
           searchIconColor={colors.accent}
           showOptions={isOpen}
           setShowOptions={setIsOpen}
