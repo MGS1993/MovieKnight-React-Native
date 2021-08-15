@@ -1,0 +1,19 @@
+diff --git a/node_modules/react-native-multi-selectbox/index.js b/node_modules/react-native-multi-selectbox/index.js
+index 665fba2..0b3a11c 100644
+--- a/node_modules/react-native-multi-selectbox/index.js
++++ b/node_modules/react-native-multi-selectbox/index.js
+@@ -28,11 +28,13 @@ function SelectBox({
+   listEmptyLabelStyle,
+   selectedItemStyle,
+   listEmptyText = 'No results found',
++  showOptions,
++  setShowOptions,
+   ...props
+ }) {
+   const [inputValue, setInputValue] = useState('')
+ 
+-  const [showOptions, setShowOptions] = useState(false)
++  // const [showOptions, setShowOptions] = useState(false)
+ 
+   function renderLabel(item) {
+     const kOptionsLabelStyle = {

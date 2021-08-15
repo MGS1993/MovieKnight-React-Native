@@ -42,6 +42,8 @@ function SearchBarModifiers({
           //   <Arrow isOpen={isOpen} onPress={() => setIsOpen(!isOpen)} />
           // }
           searchIconColor={colors.accent}
+          showOptions={isOpen}
+          setShowOptions={setIsOpen}
           toggleIconColor={colors.accent}
         />
       </View>
