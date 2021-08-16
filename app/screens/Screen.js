@@ -1,5 +1,5 @@
 import React from "react";
-import { SafeAreaView, StyleSheet, View } from "react-native";
+import { Animated, SafeAreaView, StyleSheet, View } from "react-native";
 import colors from "../config/colors";
 
 function Screen({ children, style }) {
