@@ -21,10 +21,10 @@ function ImageCycle({ imageUrl }) {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.black,
-    // position: "relative",
+    height: 580,
   },
   image: {
-    height: 500,
+    height: "100%",
   },
 });
 

@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     borderRadius: 20,
     bottom: 100,
-    width: "80%",
+    width: "90%",
   },
   screen: {
     marginTop: Constants.statusBarHeight,
