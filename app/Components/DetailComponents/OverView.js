@@ -1,20 +1,19 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { Animated, View, StyleSheet, Text } from "react-native";
 import colors from "../../config/colors";
 
-function OverView({ overview }) {
+function OverView({ animationStyle, overview }) {
   return (
-    <View style={styles.container}>
+    <Animated.View style={[styles.container, animationStyle]}>
       <Text style={styles.text}>{overview}</Text>
-    </View>
+    </Animated.View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.cardBG,
-    borderBottomRightRadius: 20,
-    borderBottomLeftRadius: 20,
+    borderRadius: 20,
     paddingHorizontal: 15,
   },
   text: {

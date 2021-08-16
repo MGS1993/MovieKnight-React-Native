@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { Animated, StyleSheet } from "react-native";
+import { Animated, StyleSheet, View } from "react-native";
 import Constants from "expo-constants";
 
 import ActivityIndicator from "../Components/ActivityIndicator";
@@ -13,11 +13,19 @@ import useApi from "../hooks/useApi";
 import Screen from "./Screen";
 
 function MediaDetails({ route }) {
+  //TODO clean up animation code
+  //TODO test on lower resolution devices
   const scrolling = useRef(new Animated.Value(0)).current;
 
   const translation = scrolling.interpolate({
     inputRange: [0, 120],
     outputRange: [0, 120],
+    extrapolate: "clamp",
+  });
+
+  const translationSecondary = scrolling.interpolate({
+    inputRange: [70, 120],
+    outputRange: [40, -80],
     extrapolate: "clamp",
   });
 
@@ -27,9 +35,23 @@ function MediaDetails({ route }) {
     extrapolate: "clamp",
   });
 
-  let style = {
+  const reverseOpacityScroll = scrolling.interpolate({
+    inputRange: [0, 120],
+    outputRange: [1, 0],
+    extrapolate: "clamp",
+  });
+
+  const cardSecondary = {
     opacity: opacityScroll,
     transform: [{ translateY: translation }],
+  };
+
+  const test = {
+    transform: [{ translateY: translationSecondary }],
+  };
+
+  const convertRuntime = (runTime) => {
+    return Math.floor(runTime / 60) + ":" + (runTime % 60);
   };
 
   const { mediaType, mediaId } = route.params;
@@ -69,16 +91,22 @@ function MediaDetails({ route }) {
         ) : (
           <>
             <ImageCycle imageUrl={data.poster_path} />
-            <Animated.View style={[styles.card, style]}>
-              <TitleBlock
-                mediaType={mediaType}
-                title={data.title || data.name}
-                yearReleased={data.release_date}
-              />
-              <OverView overview={data.overview} />
-            </Animated.View>
+            <TitleBlock
+              runTime={convertRuntime(data.runtime)}
+              title={data.title || data.name}
+              yearReleased={data.release_date}
+              animationStyle={{ opacity: reverseOpacityScroll }}
+            />
+            <Animated.View style={test}>
+              <View style={styles.card}>
+                <OverView
+                  overview={data.overview}
+                  animationStyle={cardSecondary}
+                />
+              </View>
 
-            <ProviderInfo streamProviders={streamProviders} />
+              <ProviderInfo streamProviders={streamProviders} />
+            </Animated.View>
           </>
         )}
       </Animated.ScrollView>

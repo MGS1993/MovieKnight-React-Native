@@ -1,36 +1,36 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { Animated, View, runTime, StyleSheet, Text } from "react-native";
 import colors from "../../config/colors";
 
-function TitleBlock({ mediaType, title, yearReleased }) {
-  // mediaType === 'movie' ?
+function TitleBlock({ runTime, title, yearReleased, animationStyle }) {
   let yearReleasedV2 = yearReleased?.slice(0, 4);
-  // console.log(text);
 
   return (
-    <View style={styles.container}>
+    <Animated.View style={[styles.container, animationStyle]}>
       <View style={styles.titleWrapper}>
         <Text style={styles.title}>{title}</Text>
       </View>
       <View style={styles.miscInfoWrapper}>
-        <Text style={styles.mediaType}>{mediaType}</Text>
-        <Text style={styles.yearReleased}> {yearReleasedV2} </Text>
+        <Text style={styles.yearReleased}>{yearReleasedV2}</Text>
+        <Text style={styles.interPunct}>·</Text>
+        <Text style={styles.runTime}>{runTime}</Text>
       </View>
-    </View>
+    </Animated.View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    padding: 10,
-    backgroundColor: colors.cardBG,
-    borderTopRightRadius: 20,
-    borderTopLeftRadius: 20,
+    // padding: 10,
   },
-  mediaType: {
+  interPunct: {
+    color: colors.accent,
+    fontSize: 24,
+    marginHorizontal: 5,
+  },
+  runTime: {
     color: colors.accent,
     fontSize: 18,
-    paddingHorizontal: 10,
   },
   miscInfoWrapper: {
     alignItems: "center",
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   },
   yearReleased: {
     color: colors.accent,
-    paddingHorizontal: 10,
+    fontSize: 18,
   },
 });
 
