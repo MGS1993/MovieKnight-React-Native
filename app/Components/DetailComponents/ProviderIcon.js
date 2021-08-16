@@ -1,12 +1,16 @@
 import React from "react";
-import { View, StyleSheet, Text, TouchableWithoutFeedback } from "react-native";
+import {
+  Animated,
+  View,
+  StyleSheet,
+  Text,
+  TouchableWithoutFeedback,
+} from "react-native";
 
 import colors from "../../config/colors";
 
-function ProviderIcon({ data, title, icon, onPress }) {
+function ProviderIcon({ animStyle, data, title, icon, onPress }) {
   if (data === undefined) return null;
-
-  //() => expandIcons(data)
   return (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.mainContainer}>
@@ -14,7 +18,9 @@ function ProviderIcon({ data, title, icon, onPress }) {
           <Text style={styles.title}>{title}</Text>
         </View>
 
-        <View style={styles.iconContainer}>{icon}</View>
+        <Animated.View style={[styles.iconContainer, animStyle]}>
+          {icon}
+        </Animated.View>
       </View>
     </TouchableWithoutFeedback>
   );

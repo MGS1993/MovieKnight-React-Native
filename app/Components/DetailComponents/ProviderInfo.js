@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { View, StyleSheet } from "react-native";
+import React, { useRef, useState } from "react";
+import { Animated, View, StyleSheet } from "react-native";
 
 import arrayManipulate from "../../Util/arrayManipulate";
 import IconPlaceholder from "./IconPlaceholder";
@@ -8,6 +8,7 @@ import ProviderIcon from "./ProviderIcon";
 
 function ProviderInfo({ streamProviders }) {
   //TODO add multi country support
+  //TODO animate provider icons
   const [buyIcon, setBuyIcon] = useState(IconPlaceholder);
   const [rentIcon, setRentIcon] = useState(IconPlaceholder);
   const [flatrateIcon, setFlatrateIcon] = useState(IconPlaceholder);
