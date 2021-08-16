@@ -23,6 +23,9 @@ function TitleBlock({ mediaType, title, yearReleased }) {
 const styles = StyleSheet.create({
   container: {
     padding: 10,
+    backgroundColor: colors.cardBG,
+    borderTopRightRadius: 20,
+    borderTopLeftRadius: 20,
   },
   mediaType: {
     color: colors.accent,

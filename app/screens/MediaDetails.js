@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { ScrollView, StyleSheet } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import Constants from "expo-constants";
 
 import ActivityIndicator from "../Components/ActivityIndicator";
@@ -35,12 +35,15 @@ function MediaDetails({ route }) {
         ) : (
           <>
             <ImageCycle imageUrl={data.poster_path} />
-            <TitleBlock
-              mediaType={mediaType}
-              title={data.title || data.name}
-              yearReleased={data.release_date}
-            />
-            <OverView overview={data.overview} />
+            <View style={styles.card}>
+              <TitleBlock
+                mediaType={mediaType}
+                title={data.title || data.name}
+                yearReleased={data.release_date}
+              />
+              <OverView overview={data.overview} />
+            </View>
+
             <ProviderInfo streamProviders={streamProviders} />
           </>
         )}
@@ -50,6 +53,12 @@ function MediaDetails({ route }) {
 }
 
 const styles = StyleSheet.create({
+  card: {
+    alignSelf: "center",
+    borderRadius: 20,
+    bottom: 100,
+    width: "80%",
+  },
   screen: {
     marginTop: Constants.statusBarHeight,
     height: "auto",

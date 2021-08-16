@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     // position: "relative",
   },
   image: {
-    height: 300,
+    height: 500,
   },
 });
 

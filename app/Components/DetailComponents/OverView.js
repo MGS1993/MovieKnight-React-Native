@@ -13,7 +13,8 @@ function OverView({ overview }) {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.cardBG,
-    // height: 200,
+    borderBottomRightRadius: 20,
+    borderBottomLeftRadius: 20,
     paddingHorizontal: 15,
   },
   text: {
