@@ -39,34 +39,6 @@ const getMediaGenre = async (mediaType) => {
   }
 };
 
-// const getMediaByGenre = async (mediaType, mediaCode, voteCount) => {
-//   //&page=${renderHelper}
-//   try {
-//     const response = await fetch(
-//       `https://api.themoviedb.org/3/discover/${mediaType}?api_key=${apiKey}&language=en-US&sort_by=vote_average.desc&vote_count.gte=${voteCount}&with_genres=${mediaCode}&include_adult=false&include_video=false&watch_region=US`
-//     );
-//     const data = await response.json();
-//     // console.log(data);
-//     return data.results;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-// const getTopMediaAllGenres = async (mediaType, voteCount) => {
-//   //page=${renderHelper}
-//   try {
-//     const response = await fetch(
-//       `https://api.themoviedb.org/3/discover/${mediaType}?api_key=${apiKey}&language=en-US&sort_by=vote_average.desc&vote_count.gte=${voteCount}&&timezone=America%2FTexas&include_null_first_air_dates=false`
-//     );
-//     const data = await response.json();
-//     // console.log(data.results);
-//     return data.results;
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
-
 const advMovieSearch = async (genres, withoutGenre, page) => {
   try {
     const response = await fetch(
