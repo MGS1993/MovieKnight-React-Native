@@ -1,16 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 
 import AppNavigator from "./app/navigation/AppNavigator";
+import AuthNavigator from "./app/navigation/AuthNavigator";
 import OfflineNotice from "./app/Components/OfflineNotice";
 
 export default function App() {
-  // const netInfo = useNetInfo();
+  const [user, setUser] = useState();
   return (
     <>
       <OfflineNotice />
       <NavigationContainer>
-        <AppNavigator />
+        {user ? <AppNavigator /> : <AuthNavigator />}
       </NavigationContainer>
     </>
   );

@@ -1,6 +1,5 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
-import { Image } from "react-native-expo-image-cache";
+import { Image, View, StyleSheet } from "react-native";
 
 import colors from "../../config/colors";
 

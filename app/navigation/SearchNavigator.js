@@ -32,26 +32,6 @@ const SearchNavigator = () => (
       component={Feed}
       options={{ title: "Trending TV Shows" }}
     />
-    {/* <Stack.Screen
-      name="TopMovies"
-      component={TopSearch}
-      options={{ title: "Top Movies" }}
-    />
-    <Stack.Screen
-      name="TopTv"
-      component={TopSearch}
-      options={{ title: "Top Tv" }}
-    />
-    <Stack.Screen
-      name="TopMovieByGenre"
-      component={Feed}
-      options={{ title: "Popular by Genre" }}
-    />
-    <Stack.Screen
-      name="TopMediaAllGenre"
-      component={Feed}
-      options={{ title: "Top by Genre" }}
-    /> */}
     <Stack.Screen
       name="SearchScreen"
       component={SearchScreen}

@@ -7,8 +7,6 @@ import colors from "../config/colors";
 import routes from "../navigation/routes";
 import Screen from "./Screen";
 
-import apiCalls from "../Util/apiCalls";
-
 function SearchHub({ navigation }) {
   const [search, setSearch] = useState("");
 
