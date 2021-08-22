@@ -21,7 +21,11 @@ function WelcomeScreen({ navigation }) {
           title="Log In"
           onPress={() => navigation.navigate(routes.LOGIN_SCREEN)}
         />
-        <AppButton bgColor={colors.accent} title="Register" />
+        <AppButton
+          bgColor={colors.accent}
+          title="Register"
+          onPress={() => navigation.navigate(routes.REGISTER_SCREEN)}
+        />
         <AppButton title="Continue as Guest" top={15} />
       </View>
     </ImageBackground>

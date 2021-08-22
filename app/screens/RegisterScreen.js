@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, StyleSheet, Text } from "react-native";
+import { Image, StyleSheet } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
@@ -11,21 +11,58 @@ import ErrorMessage from "../Components/ErrorMessage";
 import Screen from "./Screen";
 
 const validationSchema = Yup.object().shape({
+  userName: Yup.string().required().min(3).label("UserName"),
   email: Yup.string().required().email().label("Email"),
   password: Yup.string().required().min(4).label("Password"),
+  passwordCheck: Yup.string().oneOf(
+    [Yup.ref("password"), null],
+    "Passwords do not match"
+  ),
 });
 
-function LoginScreen({ navigation }) {
+function RegisterScreen({ navigation }) {
+  const test = async (values) => {
+    const dataBody = {
+      userName: values.userName,
+      passWord: values.password,
+      email: values.email,
+    };
+    // console.log(dataBody);
+    const response = await fetch("http://10.196.65.44:9696/api/register", {
+      method: "POST",
+      body: JSON.stringify(dataBody),
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+    const data = await response.json();
+    console.log(data);
+  };
   return (
     <Screen style={styles.screen}>
       <Image style={styles.logo} source={require("../../assets/logo.png")} />
       <Formik
-        initialValues={{ email: "", password: "" }}
-        onSubmit={(values) => console.log(values)}
+        initialValues={{
+          userName: "",
+          email: "",
+          password: "",
+          passwordCheck: "",
+        }}
+        onSubmit={(values) => test(values)}
         validationSchema={validationSchema}
       >
         {({ handleChange, handleSubmit, errors, setFieldTouched, touched }) => (
           <>
+            <AppTextInput
+              autoCorrect={false}
+              icon="email"
+              onBlur={() => setFieldTouched("userName")}
+              onChangeText={handleChange("userName")}
+              placeholder="User Name"
+            />
+
+            <ErrorMessage error={errors.userName} visible={touched.userName} />
+
             <AppTextInput
               autoCapitalize="none"
               autoCorrect={false}
@@ -49,10 +86,30 @@ function LoginScreen({ navigation }) {
               textContentType="password"
             />
             <ErrorMessage error={errors.password} visible={touched.password} />
+
+            <AppTextInput
+              autoCapitalize="none"
+              autoCorrect={false}
+              icon="lock"
+              onBlur={() => setFieldTouched("passwordCheck")}
+              onChangeText={handleChange("passwordCheck")}
+              placeholder="Re-type password"
+              secureTextEntry={true}
+              textContentType="password"
+            />
+            <ErrorMessage
+              error={errors.passwordCheck}
+              visible={touched.passwordCheck}
+            />
             <AppButton
               style={styles.button}
               title="Login"
               onPress={handleSubmit}
+            />
+            <AppButton
+              style={styles.button}
+              title="test"
+              onPress={() => console.log("test")}
             />
           </>
         )}
@@ -79,4 +136,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default RegisterScreen;
