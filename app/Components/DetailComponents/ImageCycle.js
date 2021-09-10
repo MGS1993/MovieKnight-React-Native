@@ -5,7 +5,6 @@ import { Image } from "react-native-expo-image-cache";
 import colors from "../../config/colors";
 
 function ImageCycle({ imageUrl }) {
-  console.log("https://image.tmdb.org/t/p/w300/" + imageUrl);
   return (
     <View style={styles.container}>
       <Image
