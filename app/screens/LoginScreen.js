@@ -1,7 +1,8 @@
-import React from "react";
-import { Image, StyleSheet, Text } from "react-native";
+import React, { useState } from "react";
+import { Image, StyleSheet } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import jwtDecode from "jwt-decode";
 
 import AppTextInput from "../Components/AppTextInput";
 import AppButton from "../Components/AppButton";
@@ -17,16 +18,29 @@ const validationSchema = Yup.object().shape({
 });
 
 function LoginScreen({ navigation }) {
+  const [loginFailed, setLoginFailed] = useState(false);
+
+  const handleSubmit = async (values) => {
+    const result = await backend.login(values, "/login");
+    if (result.response.status !== 200) return setLoginFailed(true);
+    setLoginFailed(false);
+    const user = jwtDecode(result.data.token);
+    console.log(user);
+  };
   return (
     <Screen style={styles.screen}>
       <Image style={styles.logo} source={require("../../assets/logo.png")} />
       <Formik
         initialValues={{ email: "", password: "" }}
-        onSubmit={(values) => backend.login(values, "/login")}
+        onSubmit={(values) => handleSubmit(values)}
         validationSchema={validationSchema}
       >
         {({ handleChange, handleSubmit, errors, setFieldTouched, touched }) => (
           <>
+            <ErrorMessage
+              error={"Invalid email and/or password."}
+              visible={loginFailed}
+            />
             <AppTextInput
               autoCapitalize="none"
               autoCorrect={false}

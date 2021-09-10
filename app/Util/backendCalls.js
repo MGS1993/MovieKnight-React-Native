@@ -9,6 +9,8 @@ const login = async (values, endpoint) => {
         "Content-Type": "application/json",
       },
     });
+    const data = await response.json();
+    return { data, response };
   } catch (error) {
     console.log(error);
   }
