@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Image, StyleSheet } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -6,6 +6,7 @@ import jwtDecode from "jwt-decode";
 
 import AppTextInput from "../Components/AppTextInput";
 import AppButton from "../Components/AppButton";
+import AuthContext from "../auth/context";
 import backend from "../Util/backendCalls";
 import colors from "../config/colors";
 import Constants from "expo-constants";
@@ -18,6 +19,7 @@ const validationSchema = Yup.object().shape({
 });
 
 function LoginScreen({ navigation }) {
+  const authContext = useContext(AuthContext);
   const [loginFailed, setLoginFailed] = useState(false);
 
   const handleSubmit = async (values) => {
@@ -25,7 +27,7 @@ function LoginScreen({ navigation }) {
     if (result.response.status !== 200) return setLoginFailed(true);
     setLoginFailed(false);
     const user = jwtDecode(result.data.token);
-    console.log(user);
+    authContext.setUser(user);
   };
   return (
     <Screen style={styles.screen}>
