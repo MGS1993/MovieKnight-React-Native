@@ -1,5 +1,19 @@
 const backendAddress = `http://10.196.64.208:9696/api`;
 
+const login = async (values, endpoint) => {
+  try {
+    const response = await fetch(backendAddress + endpoint, {
+      method: "POST",
+      body: JSON.stringify(values),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const registration = async (payload, endpoint) => {
   /* GO TO BACKEND FOR DONEWITH IT AND GO TO AUTH ROUTE. MAKE A TOKEN WHEN
   YOU REGISTER A USER TO MONGO DB */
@@ -25,5 +39,6 @@ const registration = async (payload, endpoint) => {
 };
 
 export default {
+  login,
   registration,
 };

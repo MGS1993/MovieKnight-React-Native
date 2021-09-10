@@ -5,6 +5,7 @@ import * as Yup from "yup";
 
 import AppTextInput from "../Components/AppTextInput";
 import AppButton from "../Components/AppButton";
+import backend from "../Util/backendCalls";
 import colors from "../config/colors";
 import Constants from "expo-constants";
 import ErrorMessage from "../Components/ErrorMessage";
@@ -21,7 +22,7 @@ function LoginScreen({ navigation }) {
       <Image style={styles.logo} source={require("../../assets/logo.png")} />
       <Formik
         initialValues={{ email: "", password: "" }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values) => backend.login(values, "/login")}
         validationSchema={validationSchema}
       >
         {({ handleChange, handleSubmit, errors, setFieldTouched, touched }) => (
