@@ -8,6 +8,7 @@ import AppButton from "../Components/AppButton";
 import colors from "../config/colors";
 import Constants from "expo-constants";
 import ErrorMessage from "../Components/ErrorMessage";
+import backend from "../Util/backendCalls";
 import Screen from "./Screen";
 
 const validationSchema = Yup.object().shape({
@@ -21,23 +22,6 @@ const validationSchema = Yup.object().shape({
 });
 
 function RegisterScreen({ navigation }) {
-  const test = async (values) => {
-    const dataBody = {
-      userName: values.userName,
-      passWord: values.password,
-      email: values.email,
-    };
-    // console.log(dataBody);
-    const response = await fetch("http://10.196.65.44:9696/api/register", {
-      method: "POST",
-      body: JSON.stringify(dataBody),
-      headers: {
-        "Content-type": "application/json",
-      },
-    });
-    const data = await response.json();
-    console.log(data);
-  };
   return (
     <Screen style={styles.screen}>
       <Image style={styles.logo} source={require("../../assets/logo.png")} />
@@ -48,7 +32,7 @@ function RegisterScreen({ navigation }) {
           password: "",
           passwordCheck: "",
         }}
-        onSubmit={(values) => test(values)}
+        onSubmit={(values) => backend.registration(values, "/register")}
         validationSchema={validationSchema}
       >
         {({ handleChange, handleSubmit, errors, setFieldTouched, touched }) => (
@@ -103,13 +87,8 @@ function RegisterScreen({ navigation }) {
             />
             <AppButton
               style={styles.button}
-              title="Login"
+              title="Register"
               onPress={handleSubmit}
-            />
-            <AppButton
-              style={styles.button}
-              title="test"
-              onPress={() => console.log("test")}
             />
           </>
         )}
