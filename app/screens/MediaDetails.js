@@ -23,7 +23,7 @@ function MediaDetails({ route }) {
     extrapolate: "clamp",
   });
 
-  const translationSecondary = scrolling.interpolate({
+  const reverseTranslation = scrolling.interpolate({
     inputRange: [70, 120],
     outputRange: [40, -80],
     extrapolate: "clamp",
@@ -41,13 +41,13 @@ function MediaDetails({ route }) {
     extrapolate: "clamp",
   });
 
-  const cardSecondary = {
+  const animatedOverView = {
     opacity: opacityScroll,
     transform: [{ translateY: translation }],
   };
 
-  const test = {
-    transform: [{ translateY: translationSecondary }],
+  const reverseAnimatedOverView = {
+    transform: [{ translateY: reverseTranslation }],
   };
 
   const convertRuntime = (runTime) => {
@@ -97,11 +97,11 @@ function MediaDetails({ route }) {
               yearReleased={data.release_date}
               animationStyle={{ opacity: reverseOpacityScroll }}
             />
-            <Animated.View style={test}>
+            <Animated.View style={reverseAnimatedOverView}>
               <View style={styles.card}>
                 <OverView
                   overview={data.overview}
-                  animationStyle={cardSecondary}
+                  animationStyle={animatedOverView}
                 />
               </View>
 
