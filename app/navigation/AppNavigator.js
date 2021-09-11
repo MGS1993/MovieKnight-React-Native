@@ -19,6 +19,15 @@ const AppNavigator = () => (
       }}
     />
     <Tab.Screen
+      name="Account"
+      component={HomeNavigator}
+      options={{
+        tabBarIcon: ({ color, size }) => (
+          <MaterialCommunityIcons name="account" color={color} size={size} />
+        ),
+      }}
+    />
+    <Tab.Screen
       name="Search"
       component={SearchNavigator}
       options={{
