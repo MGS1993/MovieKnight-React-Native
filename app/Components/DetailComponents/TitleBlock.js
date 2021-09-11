@@ -1,5 +1,5 @@
 import React from "react";
-import { Animated, View, runTime, StyleSheet, Text } from "react-native";
+import { Animated, View, StyleSheet, Text } from "react-native";
 import colors from "../../config/colors";
 
 function TitleBlock({ runTime, title, yearReleased, animationStyle }) {
@@ -12,7 +12,9 @@ function TitleBlock({ runTime, title, yearReleased, animationStyle }) {
       </View>
       <View style={styles.miscInfoWrapper}>
         <Text style={styles.yearReleased}>{yearReleasedV2}</Text>
-        <Text style={styles.interPunct}>·</Text>
+        {yearReleased && runTime ? (
+          <Text style={styles.interPunct}>·</Text>
+        ) : null}
         <Text style={styles.runTime}>{runTime}</Text>
       </View>
     </Animated.View>

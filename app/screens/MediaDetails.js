@@ -51,6 +51,7 @@ function MediaDetails({ route }) {
   };
 
   const convertRuntime = (runTime) => {
+    if (!runTime) return null;
     return Math.floor(runTime / 60) + ":" + (runTime % 60);
   };
 
@@ -94,7 +95,7 @@ function MediaDetails({ route }) {
             <TitleBlock
               runTime={convertRuntime(data.runtime)}
               title={data.title || data.name}
-              yearReleased={data.release_date}
+              yearReleased={data.release_date || data.first_air_date}
               animationStyle={{ opacity: reverseOpacityScroll }}
             />
             <Animated.View style={reverseAnimatedOverView}>
