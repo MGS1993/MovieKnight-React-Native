@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Image, StyleSheet } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
 import AppTextInput from "../Components/AppTextInput";
 import AppButton from "../Components/AppButton";
-import colors from "../config/colors";
+import backend from "../Util/backendCalls";
 import Constants from "expo-constants";
 import ErrorMessage from "../Components/ErrorMessage";
-import backend from "../Util/backendCalls";
+import routes from "../navigation/routes";
 import Screen from "./Screen";
 
 const validationSchema = Yup.object().shape({
@@ -20,8 +20,17 @@ const validationSchema = Yup.object().shape({
     "Passwords do not match"
   ),
 });
-
+//TODO add error handling on registration screen
 function RegisterScreen({ navigation }) {
+  const [submitError, setSubmitError] = useState(false);
+
+  const handleRegistration = async (values) => {
+    const result = await backend.registration(values, "/register");
+    if (!result.response.ok) return setSubmitError(true);
+    setSubmitError(false);
+    navigation.navigate(routes.LOGIN_SCREEN);
+  };
+
   return (
     <Screen style={styles.screen}>
       <Image style={styles.logo} source={require("../../assets/logo.png")} />
@@ -32,11 +41,15 @@ function RegisterScreen({ navigation }) {
           password: "",
           passwordCheck: "",
         }}
-        onSubmit={(values) => backend.registration(values, "/register")}
+        onSubmit={handleRegistration}
         validationSchema={validationSchema}
       >
         {({ handleChange, handleSubmit, errors, setFieldTouched, touched }) => (
           <>
+            <ErrorMessage
+              error="Account already exists"
+              visible={submitError}
+            />
             <AppTextInput
               autoCorrect={false}
               icon="email"
@@ -100,9 +113,6 @@ function RegisterScreen({ navigation }) {
 const styles = StyleSheet.create({
   button: {
     alignSelf: "center",
-  },
-  errorMsg: {
-    color: colors.danger,
   },
   logo: {
     alignSelf: "center",

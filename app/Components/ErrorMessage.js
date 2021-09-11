@@ -1,6 +1,8 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 
+import colors from "../config/colors";
+
 function ErrorMessage({ error, visible }) {
   if (!visible || !error) return null;
   return <Text style={styles.error}>{error}</Text>;
@@ -8,7 +10,7 @@ function ErrorMessage({ error, visible }) {
 
 const styles = StyleSheet.create({
   error: {
-    color: "red",
+    color: colors.danger,
   },
 });
 

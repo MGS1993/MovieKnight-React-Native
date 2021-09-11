@@ -32,6 +32,7 @@ const registration = async (payload, endpoint) => {
     });
     const data = await response.json();
     console.log(data);
+    return { response, data };
   } catch (error) {
     console.log(error);
   }

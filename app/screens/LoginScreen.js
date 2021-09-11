@@ -36,7 +36,7 @@ function LoginScreen({ navigation }) {
       <Image style={styles.logo} source={require("../../assets/logo.png")} />
       <Formik
         initialValues={{ email: "", password: "" }}
-        onSubmit={(values) => handleSubmit(values)}
+        onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
         {({ handleChange, handleSubmit, errors, setFieldTouched, touched }) => (
