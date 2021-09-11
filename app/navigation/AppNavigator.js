@@ -2,6 +2,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
+import AccountNavigator from "./AccountNavigator";
 import HomeNavigator from "./HomeNavigator";
 import SearchNavigator from "../navigation/SearchNavigator";
 
@@ -20,7 +21,7 @@ const AppNavigator = () => (
     />
     <Tab.Screen
       name="Account"
-      component={HomeNavigator}
+      component={AccountNavigator}
       options={{
         tabBarIcon: ({ color, size }) => (
           <MaterialCommunityIcons name="account" color={color} size={size} />

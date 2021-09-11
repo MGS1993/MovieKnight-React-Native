@@ -12,6 +12,7 @@ import colors from "../config/colors";
 import Constants from "expo-constants";
 import ErrorMessage from "../Components/ErrorMessage";
 import Screen from "./Screen";
+import authStorage from "../auth/storage";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
@@ -28,6 +29,7 @@ function LoginScreen({ navigation }) {
     setLoginFailed(false);
     const user = jwtDecode(result.data.token);
     authContext.setUser(user);
+    authStorage.storeToken(result.data.token);
   };
   return (
     <Screen style={styles.screen}>

@@ -8,6 +8,7 @@ import Icon from "../Components/Icon";
 import ListItemSeparator from "../Components/ListItemSeparator";
 import Screen from "./Screen";
 import UiItem from "../Components/account/UiItem";
+import authStorage from "../auth/storage";
 
 const menuItems = [
   {
@@ -28,14 +29,19 @@ const menuItems = [
 ];
 
 function AccountScreen(props) {
-  // const { user } = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    setUser(null);
+    authStorage.removeToken();
+  };
   // console.log(user);
   return (
     <Screen style={styles.screen}>
       <View style={styles.container}>
         <UiItem
-          title={"Manuel"}
-          subTitle={"Mannyg1218@yahoo.com"}
+          title={user.username}
+          subTitle={user.email}
           image={require("../../assets/blankProf.png")}
         />
       </View>
@@ -61,7 +67,7 @@ function AccountScreen(props) {
       <UiItem
         title="Log Out"
         IconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
-        onPress={() => console.log("logged out")}
+        onPress={handleLogout}
       />
     </Screen>
   );

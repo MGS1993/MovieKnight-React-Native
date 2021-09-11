@@ -17,15 +17,12 @@ const login = async (values, endpoint) => {
 };
 
 const registration = async (payload, endpoint) => {
-  /* GO TO BACKEND FOR DONEWITH IT AND GO TO AUTH ROUTE. MAKE A TOKEN WHEN
-  YOU REGISTER A USER TO MONGO DB */
   try {
     const dataBody = {
       userName: payload.userName,
       email: payload.email,
       passWord: payload.password,
     };
-    // console.log(dataBody);
     const response = await fetch(backendAddress + endpoint, {
       method: "POST",
       body: JSON.stringify(dataBody),
