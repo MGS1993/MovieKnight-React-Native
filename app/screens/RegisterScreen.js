@@ -20,7 +20,7 @@ const validationSchema = Yup.object().shape({
     "Passwords do not match"
   ),
 });
-//TODO add error handling on registration screen
+
 function RegisterScreen({ navigation }) {
   const [submitError, setSubmitError] = useState(false);
 

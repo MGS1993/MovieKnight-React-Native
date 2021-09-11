@@ -8,7 +8,6 @@ import ListItemSeparator from "../Components/ListItemSeparator";
 import Screen from "../screens/Screen";
 import useApi from "../hooks/useApi";
 
-//TODO find a way to optimize the FlatList
 function Feed({ data, route, style }) {
   const [page, setPage] = useState(1);
   let apiCall = apiCalls[route?.params.funcName]; // gets apiCall from import

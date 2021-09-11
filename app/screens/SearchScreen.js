@@ -12,8 +12,6 @@ import routes from "../navigation/routes";
 import Screen from "./Screen";
 import useApi from "../hooks/useApi";
 
-//TODO prevent user from being able to select conflicting genres
-//TODO clean up code for button horizontal margin
 function SearchScreen({ navigation, route }) {
   const [genreFilter, setGenreFilter] = useState([]);
   const [withoutGenreFil, setWithoutGenreFil] = useState([]);
