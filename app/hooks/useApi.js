@@ -18,10 +18,6 @@ const useApi = (apiFunc) => {
     }
   };
 
-  //probablly need to remove this from this hook or make a new one
-  //find out why we can't add newData to current data
-  //DATA FOR LIST IS THIS API THOUGH. IT PROBABLY HAS TO BE HERE IDFK.
-  //future manuel, you are my only hope
   const addToList = async (newData) => {
     try {
       let newState = [...data, ...newData];
