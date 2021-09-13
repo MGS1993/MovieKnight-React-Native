@@ -7,6 +7,7 @@ import AccountNavigator from "./AccountNavigator";
 import AuthContext from "../auth/context";
 import backendCalls from "../Util/backendCalls";
 import HomeNavigator from "./HomeNavigator";
+import navigation from "./rootNavigation";
 import SearchNavigator from "../navigation/SearchNavigator";
 
 const Tab = createBottomTabNavigator();
@@ -16,6 +17,9 @@ const AppNavigator = () => {
 
   useEffect(() => {
     registerForPushNotifications();
+    Notifications.addNotificationResponseReceivedListener((notification) => {
+      navigation.navigate("Account");
+    });
   }, []);
 
   const registerForPushNotifications = async () => {
