@@ -1,43 +1,16 @@
-import React, { useEffect, useContext } from "react";
+import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import * as Notifications from "expo-notifications";
 
 import AccountNavigator from "./AccountNavigator";
-import AuthContext from "../auth/context";
-import backendCalls from "../Util/backendCalls";
 import HomeNavigator from "./HomeNavigator";
-import navigation from "./rootNavigation";
 import SearchNavigator from "../navigation/SearchNavigator";
+import useNotifications from "../hooks/useNotifications";
 
 const Tab = createBottomTabNavigator();
 
 const AppNavigator = () => {
-  const userContext = useContext(AuthContext);
-
-  useEffect(() => {
-    registerForPushNotifications();
-    Notifications.addNotificationResponseReceivedListener((notification) => {
-      navigation.navigate("Account");
-    });
-  }, []);
-
-  const registerForPushNotifications = async () => {
-    try {
-      const permission = await Notifications.getPermissionsAsync();
-      if (!permission.granted) return;
-
-      const token = await Notifications.getExpoPushTokenAsync();
-      backendCalls.pushTokenRegistration(
-        token,
-        userContext.user,
-        "/registerToken"
-      );
-    } catch (error) {
-      console.log("Error registering token", error);
-    }
-  };
-
+  useNotifications();
   return (
     <Tab.Navigator>
       <Tab.Screen
