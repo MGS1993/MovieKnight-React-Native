@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { StyleSheet } from "react-native";
 import Constants from "expo-constants";
 
-import apiCalls from "../Util/apiCalls";
+import mediaCalls from "../Util/mediaCalls";
 import Feed from "../Components/Feed";
 import useApi from "../hooks/useApi";
 
@@ -13,7 +13,7 @@ function HomeScreen(props) {
     error,
     loading,
     request: getData,
-  } = useApi(apiCalls.trendingMedia);
+  } = useApi(mediaCalls.trendingMedia);
 
   useEffect(() => {
     getData();

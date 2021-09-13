@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, StyleSheet, Text } from "react-native";
 
-import apiCalls from "../Util/apiCalls";
+import mediaCalls from "../Util/mediaCalls";
 import AppButton from "../Components/AppButton";
 import colors from "../config/colors";
 import routes from "../navigation/routes";
@@ -15,7 +15,7 @@ function TopSearch({ route, navigation }) {
     error,
     loading,
     request: getData,
-  } = useApi(apiCalls.getMediaGenre);
+  } = useApi(mediaCalls.getMediaGenre);
   const [selectedGenre, setSelectedGenre] = useState("");
   const mediaType = route.params.mediaType;
   let pickerItems = [

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet } from "react-native";
 
-import apiCalls from "../Util/apiCalls";
+import mediaCalls from "../Util/mediaCalls";
 import AppButton from "../Components/AppButton";
 import arrayManipulate from "../Util/arrayManipulate";
 import arrayReArrange from "../Util/arrayReArrange";
@@ -28,7 +28,7 @@ function SearchScreen({ navigation, route }) {
     error,
     loading,
     request: getGenre,
-  } = useApi(apiCalls.getMediaGenre);
+  } = useApi(mediaCalls.getMediaGenre);
 
   useEffect(() => {
     getGenre(mediaType);

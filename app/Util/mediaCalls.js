@@ -95,8 +95,6 @@ const multiSearch = async (queryStr) => {
 export default {
   advMovieSearch,
   advTvSearch,
-  // getTopMediaAllGenres,
-  // getMediaByGenre,
   getMediaDetails,
   getMediaGenre,
   getStreamData,

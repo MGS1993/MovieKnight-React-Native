@@ -7,7 +7,7 @@ import jwtDecode from "jwt-decode";
 import AppTextInput from "../Components/AppTextInput";
 import AppButton from "../Components/AppButton";
 import AuthContext from "../auth/context";
-import backend from "../Util/backendCalls";
+import auth from "../Util/auth";
 import colors from "../config/colors";
 import Constants from "expo-constants";
 import ErrorMessage from "../Components/ErrorMessage";
@@ -24,7 +24,7 @@ function LoginScreen({ navigation }) {
   const [loginFailed, setLoginFailed] = useState(false);
 
   const handleSubmit = async (values) => {
-    const result = await backend.login(values, "/login");
+    const result = await auth.login(values, "/login");
     if (result.response.status !== 200) return setLoginFailed(true);
     setLoginFailed(false);
     const user = jwtDecode(result.data.token);

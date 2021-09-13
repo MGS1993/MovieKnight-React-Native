@@ -5,7 +5,7 @@ import * as Yup from "yup";
 
 import AppTextInput from "../Components/AppTextInput";
 import AppButton from "../Components/AppButton";
-import backend from "../Util/backendCalls";
+import auth from "../Util/auth";
 import Constants from "expo-constants";
 import ErrorMessage from "../Components/ErrorMessage";
 import routes from "../navigation/routes";
@@ -25,7 +25,7 @@ function RegisterScreen({ navigation }) {
   const [submitError, setSubmitError] = useState(false);
 
   const handleRegistration = async (values) => {
-    const result = await backend.registration(values, "/register");
+    const result = await auth.registration(values, "/register");
     if (!result.response.ok) return setSubmitError(true);
     setSubmitError(false);
     navigation.navigate(routes.LOGIN_SCREEN);

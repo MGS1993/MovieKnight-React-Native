@@ -3,7 +3,7 @@ import { Animated, StyleSheet, View } from "react-native";
 import Constants from "expo-constants";
 
 import ActivityIndicator from "../Components/ActivityIndicator";
-import apiCalls from "../Util/apiCalls";
+import mediaCalls from "../Util/mediaCalls";
 import ImageCycle from "../Components/DetailComponents/ImageCycle";
 import OverView from "../Components/DetailComponents/OverView";
 import ProviderInfo from "../Components/DetailComponents/ProviderInfo";
@@ -61,9 +61,9 @@ function MediaDetails({ route }) {
     error,
     loading,
     request: loadDetails,
-  } = useApi(apiCalls?.getMediaDetails);
+  } = useApi(mediaCalls?.getMediaDetails);
   const { data: streamProviders, request: getStreamProviders } = useApi(
-    apiCalls.getStreamData
+    mediaCalls.getStreamData
   );
 
   useEffect(() => {

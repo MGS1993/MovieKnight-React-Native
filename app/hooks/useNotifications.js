@@ -2,7 +2,7 @@ import { useEffect, useContext } from "react";
 import * as Notifications from "expo-notifications";
 
 import AuthContext from "../auth/context";
-import backendCalls from "../Util/backendCalls";
+import expoPushTokens from "../Util/expoPushTokens";
 
 export default useNotifications = (notificationListener) => {
   const userContext = useContext(AuthContext);
@@ -21,7 +21,7 @@ export default useNotifications = (notificationListener) => {
       if (!permission.granted) return;
 
       const token = await Notifications.getExpoPushTokenAsync();
-      backendCalls.pushTokenRegistration(
+      expoPushTokens.pushTokenRegistration(
         token,
         userContext.user,
         "/registerToken"

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FlatList } from "react-native";
 
 import ActivityIndicator from "./ActivityIndicator";
-import apiCalls from "../Util/apiCalls";
+import mediaCalls from "../Util/mediaCalls";
 import Card from "../Components/Card";
 import ListItemSeparator from "../Components/ListItemSeparator";
 import Screen from "../screens/Screen";
@@ -10,7 +10,7 @@ import useApi from "../hooks/useApi";
 
 function Feed({ data, route, style }) {
   const [page, setPage] = useState(1);
-  let apiCall = apiCalls[route?.params.funcName]; // gets apiCall from import
+  let apiCall = mediaCalls[route?.params.funcName]; // gets apiCall from import
   let funcVar = route?.params.funcVar; // gets variable for apiCall from route
   let funcCall = useApi(apiCall); // sets variable for useApi hook
   let otherVar = route?.params.otherVar; //misc variable passed from route
