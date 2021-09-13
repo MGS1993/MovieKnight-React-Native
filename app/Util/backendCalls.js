@@ -40,6 +40,7 @@ const registration = async (payload, endpoint) => {
 
 const pushTokenRegistration = async (token, user, endpoint) => {
   try {
+    //TODO remove password from dataBody
     const dataBody = {
       userName: user.userName,
       email: user.email,
