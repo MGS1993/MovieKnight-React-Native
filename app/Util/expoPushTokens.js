@@ -2,11 +2,9 @@ const backendAddress = `http://10.196.64.208:9696/api`;
 
 const pushTokenRegistration = async (token, user, endpoint) => {
   try {
-    //TODO remove password from dataBody
     const dataBody = {
       userName: user.userName,
       email: user.email,
-      passWord: user.password,
       token: token,
     };
     const response = await fetch(backendAddress + endpoint, {
