@@ -5,6 +5,7 @@ export default Object.freeze({
   REGISTER_SCREEN: "RegisterScreen",
   SEARCH_SCREEN: "SearchScreen",
   SEARCH_RESULTS: "SearchResults",
+  TRACKED_LIST: "TrackedList",
   TRENDING_MOVIES: "TrendingMovies",
   TRENDING_TV: "TrendingTv",
 });

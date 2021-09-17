@@ -9,6 +9,7 @@ import ListItemSeparator from "../Components/ListItemSeparator";
 import Screen from "./Screen";
 import UiItem from "../Components/account/UiItem";
 import authStorage from "../auth/storage";
+import routes from "../navigation/routes";
 
 const menuItems = [
   {
@@ -28,7 +29,7 @@ const menuItems = [
   },
 ];
 
-function AccountScreen(props) {
+function AccountScreen({ navigation }) {
   const { user, setUser } = useContext(AuthContext);
 
   const handleLogout = () => {
@@ -59,7 +60,7 @@ function AccountScreen(props) {
                   backgroundColor={item.icon.backgroundColor}
                 />
               }
-              // onPress={() => navigation.navigate(item.targetScreen)}
+              onPress={() => navigation.navigate(routes.TRACKED_LIST)}
             />
           )}
         />
