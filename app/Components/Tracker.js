@@ -8,7 +8,7 @@ import trackApi from "../Util/trackApi";
 function Tracker({ mediaType, mediaData }) {
   if (mediaType !== "tv") return null;
   const { user } = useContext(AuthContext);
-  console.log(mediaData);
+
   return (
     <View style={styles.container}>
       <AppButton

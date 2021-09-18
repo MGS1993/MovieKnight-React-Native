@@ -27,6 +27,20 @@ const handleTvTrack = async (values, endpoint, userEmail) => {
   }
 };
 
+const handleGetTracked = async (userEmail) => {
+  try {
+    const response = await fetch(
+      `${backendAddress}/get_tracked_shows/${userEmail}`
+    );
+    const data = await response.json();
+    // setState(data)
+    console.log(data);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 export default {
+  handleGetTracked,
   handleTvTrack,
 };
