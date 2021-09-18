@@ -8,6 +8,7 @@ import ImageCycle from "../Components/DetailComponents/ImageCycle";
 import OverView from "../Components/DetailComponents/OverView";
 import ProviderInfo from "../Components/DetailComponents/ProviderInfo";
 import TitleBlock from "../Components/DetailComponents/TitleBlock";
+import Tracker from "../Components/Tracker";
 import useApi from "../hooks/useApi";
 
 import Screen from "./Screen";
@@ -107,6 +108,7 @@ function MediaDetails({ route }) {
               </View>
 
               <ProviderInfo streamProviders={streamProviders} />
+              <Tracker mediaType={mediaType} mediaData={data} />
             </Animated.View>
           </>
         )}
