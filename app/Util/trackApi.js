@@ -32,9 +32,9 @@ const handleGetTracked = async (userEmail) => {
     const response = await fetch(
       `${backendAddress}/get_tracked_shows/${userEmail}`
     );
-    const data = await response.json();
+    return await response.json();
     // setState(data)
-    console.log(data);
+    // console.log(data);
   } catch (err) {
     console.log(err);
   }

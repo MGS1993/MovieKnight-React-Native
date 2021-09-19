@@ -1,27 +1,52 @@
-import React, { useContext } from "react";
-import { Text } from "react-native";
+import React, { useContext, useEffect } from "react";
+import { Text, FlatList } from "react-native";
 import { View, StyleSheet } from "react-native";
+import Constants from "expo-constants";
 
+import ActivityIndicator from "../Components/ActivityIndicator";
 import AuthContext from "../auth/context";
 import trackApi from "../Util/trackApi";
 import Screen from "./Screen";
+import useApi from "../hooks/useApi";
+import TrackerCard from "../Components/trackerCard/TrackerCard";
 
 function TrackListScreen(props) {
   const { user } = useContext(AuthContext);
-  if (user.email !== undefined) {
-    trackApi.handleGetTracked(user.email);
-  }
+
+  const {
+    data,
+    loading,
+    request: getTracked,
+  } = useApi(trackApi.handleGetTracked);
+
+  useEffect(() => {
+    getTracked(user.email);
+  }, []);
+
   return (
-    <Screen>
-      <View>
-        <Text>test</Text>
-      </View>
+    <Screen style={styles.screen}>
+      <ActivityIndicator visible={loading} />
+      <FlatList
+        data={data}
+        keyExtractor={(data) => data.id.toString()}
+        renderItem={({ item }) => (
+          <View style={styles.trackerWrapper}>
+            <TrackerCard id={item.id} />
+          </View>
+        )}
+      />
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {},
+  screen: {
+    marginTop: Constants.statusBarHeight,
+  },
+  trackerWrapper: {
+    alignItems: "center",
+    display: "flex",
+  },
 });
 
 export default TrackListScreen;
