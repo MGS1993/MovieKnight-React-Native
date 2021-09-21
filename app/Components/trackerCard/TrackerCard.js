@@ -11,8 +11,9 @@ import useApi from "../../hooks/useApi";
 import TrackerInfo from "./TrackerInfo";
 import colors from "../../config/colors";
 import Icon from "../Icon";
+import trackApi from "../../Util/trackApi";
 
-function TrackerCard({ id }) {
+function TrackerCard({ id, userEmail }) {
   const { data, request: getDetails } = useApi(mediaCalls.getMediaDetails);
   const image = { uri: "https://image.tmdb.org/t/p/w300/" + data.poster_path };
 
@@ -33,7 +34,10 @@ function TrackerCard({ id }) {
             title={data.name}
             nextEp={data?.next_episode_to_air?.air_date}
           />
-          <TouchableOpacity style={styles.deleteBtn}>
+          <TouchableOpacity
+            style={styles.deleteBtn}
+            onPress={() => trackApi.deleteHandler(userEmail, id)}
+          >
             <Icon
               name="trash-can-outline"
               size={35}

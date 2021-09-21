@@ -31,7 +31,7 @@ function TrackListScreen(props) {
         keyExtractor={(data) => data.id.toString()}
         renderItem={({ item }) => (
           <View style={styles.trackerWrapper}>
-            <TrackerCard id={item.id} />
+            <TrackerCard id={item.id} userEmail={user.email} />
           </View>
         )}
       />
