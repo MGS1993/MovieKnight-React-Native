@@ -40,17 +40,22 @@ const handleGetTracked = async (userEmail) => {
 
 const deleteHandler = async (userEmail, showId) => {
   try {
-    const trackList = await handleGetTracked(userEmail);
-    //LOOP THROUGH TRACKED TO GET THE CORRECT IT TO DELETE WITH DELETE HANDLER
-    //_ID IS THE BEST BET DUE TO IT BEING A UNIQUE ID
-    console.log(trackList);
-    // await fetch(`${backendAddress}/delete_tv_show/${userEmail}/${showId}`, {
-    //   method: "DELETE",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // });
-    // await handleGetTracked(userId, userEmail);
+    // const trackList = await handleGetTracked(userEmail);
+    // //LOOP THROUGH TRACKED TO GET THE CORRECT IT TO DELETE WITH DELETE HANDLER
+    // //_ID IS THE BEST BET DUE TO IT BEING A UNIQUE ID
+    // console.log(trackList);
+    const response = await fetch(
+      `${backendAddress}/delete_tv_show/${showId}/${userEmail}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const data = await response.json();
+
+    console.log(data.msg, data.data);
   } catch (err) {
     console.log(err);
   }
