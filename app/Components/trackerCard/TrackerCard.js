@@ -14,7 +14,11 @@ import Icon from "../Icon";
 import trackApi from "../../Util/trackApi";
 
 function TrackerCard({ id, userEmail, updateTracked }) {
-  const { data, request: getDetails } = useApi(mediaCalls.getMediaDetails);
+  const {
+    data,
+    request: getDetails,
+    loading: cardLoading,
+  } = useApi(mediaCalls.getMediaDetails);
   const image = { uri: "https://image.tmdb.org/t/p/w300/" + data.poster_path };
 
   useEffect(() => {
@@ -65,6 +69,13 @@ const styles = StyleSheet.create({
   child: {
     flex: 1,
     backgroundColor: "rgba(0,0,0,0.5)",
+  },
+  deleteBtn: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: 45,
+    width: 45,
   },
   image: {
     height: "100%",

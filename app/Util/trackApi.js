@@ -24,6 +24,7 @@ const handleTvTrack = async (values, endpoint, userEmail) => {
     const data = await response.json();
 
     console.log(data.msg);
+    return { response, data };
   } catch (err) {
     console.log(err);
   }

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Text, FlatList } from "react-native";
 import { View, StyleSheet } from "react-native";
 import Constants from "expo-constants";
@@ -30,20 +30,23 @@ function TrackListScreen(props) {
   };
   return (
     <Screen style={styles.screen}>
-      <ActivityIndicator visible={loading} />
-      <FlatList
-        data={data}
-        keyExtractor={(data) => data.id.toString()}
-        renderItem={({ item }) => (
-          <View style={styles.trackerWrapper}>
-            <TrackerCard
-              id={item.id}
-              userEmail={user.email}
-              updateTracked={updateTracked}
-            />
-          </View>
-        )}
-      />
+      {loading ? (
+        <ActivityIndicator visible={loading} />
+      ) : (
+        <FlatList
+          data={data}
+          keyExtractor={(data) => data.id.toString()}
+          renderItem={({ item }) => (
+            <View style={styles.trackerWrapper}>
+              <TrackerCard
+                id={item.id}
+                userEmail={user.email}
+                updateTracked={updateTracked}
+              />
+            </View>
+          )}
+        />
+      )}
     </Screen>
   );
 }
