@@ -12,9 +12,12 @@ function TrackerInfo({ title, nextEp }) {
   return (
     <View style={styles.container}>
       <Text style={[styles.text, styles.title]}>{title}</Text>
-      <Text
-        style={[styles.text, styles.nextEp]}
-      >{`Next Episode: ${nextFormatted}`}</Text>
+      <Text style={[styles.text, styles.nextEp]}>
+        {" "}
+        {nextEp === undefined
+          ? `Next Episode: TBA`
+          : `Next Episode: ${nextFormatted}`}
+      </Text>
     </View>
   );
 }
