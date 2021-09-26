@@ -104,6 +104,7 @@ function MediaDetails({ route }) {
                 <OverView
                   overview={data.overview}
                   animationStyle={animatedOverView}
+                  status={data?.status}
                 />
               </View>
 

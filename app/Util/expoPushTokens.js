@@ -15,7 +15,7 @@ const pushTokenRegistration = async (token, user, endpoint) => {
       },
     });
     const data = await response.json();
-    console.log("user registered for notifications", data);
+    console.log("user registered for notifications" /*data*/);
     // return { response, data };
   } catch (error) {
     console.log("error registering token", error);

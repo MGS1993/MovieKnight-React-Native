@@ -7,11 +7,13 @@ const handleTvTrack = async (values, endpoint, userEmail) => {
       id: values.id,
       firstAirDate: values.first_air_date,
       lastAirDate: values.last_air_date,
-      nextAirDate: values.next_episode_to_air.air_date,
+      nextAirDate: values.next_episode_to_air?.air_date,
       noEpisodes: values.number_of_episodes,
       noSeasons: values.number_of_seasons,
       trackedBy: userEmail,
+      status: values.status,
     };
+
     const response = await fetch(backendAddress + endpoint, {
       method: "POST",
       body: JSON.stringify(dataBody),
