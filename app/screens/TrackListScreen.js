@@ -15,6 +15,7 @@ function TrackListScreen(props) {
 
   const {
     data,
+    setData,
     loading,
     request: getTracked,
   } = useApi(trackApi.handleGetTracked);
@@ -23,6 +24,10 @@ function TrackListScreen(props) {
     getTracked(user.email);
   }, []);
 
+  const updateTracked = async () => {
+    const newData = getTracked(user.email);
+    setData(newData);
+  };
   return (
     <Screen style={styles.screen}>
       <ActivityIndicator visible={loading} />
@@ -31,7 +36,11 @@ function TrackListScreen(props) {
         keyExtractor={(data) => data.id.toString()}
         renderItem={({ item }) => (
           <View style={styles.trackerWrapper}>
-            <TrackerCard id={item.id} userEmail={user.email} />
+            <TrackerCard
+              id={item.id}
+              userEmail={user.email}
+              updateTracked={updateTracked}
+            />
           </View>
         )}
       />

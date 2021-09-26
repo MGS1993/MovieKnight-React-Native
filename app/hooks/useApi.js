@@ -26,7 +26,7 @@ const useApi = (apiFunc) => {
       console.log(error);
     }
   };
-  return { data, error, loading, request, addToList };
+  return { data, setData, error, loading, request, addToList };
 };
 
 export default useApi;

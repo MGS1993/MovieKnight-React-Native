@@ -13,13 +13,17 @@ import colors from "../../config/colors";
 import Icon from "../Icon";
 import trackApi from "../../Util/trackApi";
 
-function TrackerCard({ id, userEmail }) {
+function TrackerCard({ id, userEmail, updateTracked }) {
   const { data, request: getDetails } = useApi(mediaCalls.getMediaDetails);
   const image = { uri: "https://image.tmdb.org/t/p/w300/" + data.poster_path };
 
   useEffect(() => {
     getDetails("tv", id);
   }, []);
+  const handleDeleteTracker = async (userEmail, id) => {
+    await trackApi.deleteHandler(userEmail, id);
+    updateTracked(userEmail);
+  };
 
   return (
     <View style={styles.container}>
@@ -36,7 +40,7 @@ function TrackerCard({ id, userEmail }) {
           />
           <TouchableOpacity
             style={styles.deleteBtn}
-            onPress={() => trackApi.deleteHandler(userEmail, id)}
+            onPress={() => handleDeleteTracker(userEmail, id)}
           >
             <Icon
               name="trash-can-outline"
