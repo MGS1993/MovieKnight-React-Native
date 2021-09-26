@@ -109,7 +109,11 @@ function MediaDetails({ route }) {
               </View>
 
               <ProviderInfo streamProviders={streamProviders} />
-              <Tracker mediaType={mediaType} mediaData={data} />
+              <Tracker
+                mediaType={mediaType}
+                mediaData={data}
+                visible={data?.status === "Ended" ? false : true}
+              />
             </Animated.View>
           </>
         )}

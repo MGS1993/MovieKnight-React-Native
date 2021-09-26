@@ -5,8 +5,9 @@ import AppButton from "./AppButton";
 import AuthContext from "../auth/context";
 import trackApi from "../Util/trackApi";
 
-function Tracker({ mediaType, mediaData }) {
+function Tracker({ mediaType, mediaData, visible = false }) {
   if (mediaType !== "tv") return null;
+  if (!visible) return null;
   const { user } = useContext(AuthContext);
 
   return (
