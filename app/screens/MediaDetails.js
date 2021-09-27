@@ -112,6 +112,7 @@ function MediaDetails({ route }) {
               <Tracker
                 mediaType={mediaType}
                 mediaData={data}
+                trackerStyle={styles.trackerContainer}
                 visible={data?.status === "Ended" ? false : true}
               />
             </Animated.View>
@@ -132,6 +133,9 @@ const styles = StyleSheet.create({
   screen: {
     marginTop: Constants.statusBarHeight,
     height: "auto",
+  },
+  trackerContainer: {
+    marginTop: 15,
   },
 });
 

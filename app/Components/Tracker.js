@@ -8,7 +8,7 @@ import FadeInView from "./animatedComponents/FadeInView";
 import TextAlert from "./TextAlert";
 import trackApi from "../Util/trackApi";
 
-function Tracker({ mediaType, mediaData, visible = false }) {
+function Tracker({ mediaType, mediaData, visible = false, trackerStyle }) {
   const [isTracking, setIsTracking] = useState(false);
   const [responseMessage, setResponseMessage] = useState("");
   if (mediaType !== "tv") return null;
@@ -31,7 +31,7 @@ function Tracker({ mediaType, mediaData, visible = false }) {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, trackerStyle]}>
       <AppButton title="Track" onPress={trackHandler} />
       <FadeInView startAnim={isTracking} /*isSpring={false}*/>
         <TextAlert textStyle={[styles.trackerAlert, textColor]}>
