@@ -11,7 +11,7 @@ function FadeInView({ children, startAnim /*isSpring = false*/ }) {
     Animated.sequence([
       Animated.timing(fadeAnim, {
         toValue: 1,
-        duration: 1000,
+        duration: 500,
         useNativeDriver: true,
       }),
       Animated.timing(fadeAnim, {
@@ -25,7 +25,7 @@ function FadeInView({ children, startAnim /*isSpring = false*/ }) {
   const spring = () => {
     Animated.spring(springAnim, {
       toValue: windowWidth / 2,
-      friction: 3.5,
+      friction: 5.5,
       useNativeDriver: true,
     }).start();
   };

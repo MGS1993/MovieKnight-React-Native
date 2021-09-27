@@ -15,6 +15,10 @@ function Tracker({ mediaType, mediaData, visible = false }) {
   if (!visible) return null;
   const { user } = useContext(AuthContext);
 
+  const textColor = {
+    color: responseMessage.length > 15 ? colors.danger : colors.safe,
+  };
+
   const trackHandler = async () => {
     const { data } = await trackApi.handleTvTrack(
       mediaData,
@@ -29,8 +33,10 @@ function Tracker({ mediaType, mediaData, visible = false }) {
   return (
     <View style={styles.container}>
       <AppButton title="Track" onPress={trackHandler} />
-      <FadeInView startAnim={isTracking} isSpring={false}>
-        <TextAlert textStyle={styles.trackerAlert}>{responseMessage}</TextAlert>
+      <FadeInView startAnim={isTracking} /*isSpring={false}*/>
+        <TextAlert textStyle={[styles.trackerAlert, textColor]}>
+          {responseMessage}
+        </TextAlert>
       </FadeInView>
     </View>
   );
@@ -42,7 +48,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   trackerAlert: {
-    color: colors.safe,
     fontSize: 18,
   },
 });
