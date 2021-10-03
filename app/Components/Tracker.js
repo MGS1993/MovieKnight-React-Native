@@ -26,7 +26,7 @@ function Tracker({ mediaType, mediaData, visible = false, trackerStyle }) {
       user.email
     );
 
-    await trackApi.appendScheduledNotification(data.tvShow._id, identifier);
+    await trackApi.appendNotificationIdentifier(data.tvShow._id, identifier);
 
     console.log(data);
     console.log(identifier);

@@ -33,7 +33,7 @@ const handleTvTrack = async (values, endpoint, userEmail) => {
         dataBody.nextAirDate,
         dataBody.title
       );
-      await getScheduledNotifications();
+      // await getScheduledNotifications();
     }
 
     console.log(data.msg);
@@ -62,7 +62,7 @@ const setNotificationSchedule = async (nextAirDate, title) => {
   return identifier;
 };
 
-const appendScheduledNotification = async (_id, identifier) => {
+const appendNotificationIdentifier = async (_id, identifier) => {
   try {
     const response = await fetch(
       `${backendAddress}/append_schedule/${_id}/${identifier}`
@@ -96,7 +96,9 @@ const deleteHandler = async (userEmail, showId) => {
       }
     );
     const data = await response.json();
-    console.log(data.msg, data.data);
+    console.log(data);
+    return data;
+    // console.log(data.msg, data.data);
   } catch (err) {
     console.log(err);
   }
@@ -109,8 +111,24 @@ const getScheduledNotifications = async () => {
   console.log(notificationList);
 };
 
+const cancelScheduledNotification = async (identifier) => {
+  try {
+    console.log("Scheduled Notification canceled");
+    return await Notifications.cancelScheduledNotificationAsync(identifier);
+  } catch (error) {
+    console.log("Error Canceling Scheduled Notification", error);
+  }
+};
+
+const cancelAllNotifications = async () => {
+  console.log("cancel ran");
+  return await Notifications.cancelAllScheduledNotificationsAsync();
+};
+
 export default {
-  appendScheduledNotification,
+  appendNotificationIdentifier,
+  cancelAllNotifications,
+  cancelScheduledNotification,
   deleteHandler,
   handleGetTracked,
   handleTvTrack,

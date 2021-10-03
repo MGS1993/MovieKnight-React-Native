@@ -24,6 +24,7 @@ function TrackListScreen(props) {
     getTracked(user.email);
   }, []);
 
+  //TODO optimize code so that it doesn't reload. maybe react memo
   const updateTracked = async () => {
     const newData = getTracked(user.email);
     setData(newData);
