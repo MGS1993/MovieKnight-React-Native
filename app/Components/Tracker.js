@@ -20,11 +20,16 @@ function Tracker({ mediaType, mediaData, visible = false, trackerStyle }) {
   };
 
   const trackHandler = async () => {
-    const { data } = await trackApi.handleTvTrack(
+    const { data, identifier } = await trackApi.handleTvTrack(
       mediaData,
       "/track_tv_show",
       user.email
     );
+
+    await trackApi.appendScheduledNotification(data.tvShow._id, identifier);
+
+    console.log(data);
+    console.log(identifier);
 
     setIsTracking(true);
     setResponseMessage(data.msg);

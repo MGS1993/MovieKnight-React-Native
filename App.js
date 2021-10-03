@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import jwtDecode from "jwt-decode";
 import AppLoading from "expo-app-loading";

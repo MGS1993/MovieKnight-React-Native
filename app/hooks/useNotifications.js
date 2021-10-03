@@ -50,7 +50,7 @@ export default useNotifications = (notificationListener) => {
       //     body: "Change sides!",
       //   },
       //   trigger: {
-      //     seconds: 15,
+      //     seconds: 30,
       //   },
       // });
     } catch (error) {

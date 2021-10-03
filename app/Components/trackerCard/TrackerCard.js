@@ -24,6 +24,7 @@ function TrackerCard({ id, userEmail, updateTracked }) {
   useEffect(() => {
     getDetails("tv", id);
   }, []);
+  // console.log(data);
   const handleDeleteTracker = async (userEmail, id) => {
     await trackApi.deleteHandler(userEmail, id);
     updateTracked(userEmail);

@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import AccountNavigator from "./AccountNavigator";
+import AuthContext from "../auth/context";
+// import checkForNextEpisode from "../Util/CheckForNextEpisode";
 import HomeNavigator from "./HomeNavigator";
 import SearchNavigator from "../navigation/SearchNavigator";
 import useNotifications from "../hooks/useNotifications";
@@ -10,6 +12,8 @@ import useNotifications from "../hooks/useNotifications";
 const Tab = createBottomTabNavigator();
 
 const AppNavigator = () => {
+  const { user } = useContext(AuthContext);
+  // checkForNextEpisode(user.email);
   useNotifications();
   return (
     <Tab.Navigator>

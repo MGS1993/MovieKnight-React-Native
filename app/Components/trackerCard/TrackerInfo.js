@@ -1,14 +1,14 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
-import formatDistance from "date-fns/formatDistance";
+import { View, StyleSheet, Text, Button } from "react-native";
+import formatDistanceToNow from "date-fns/formatDistanceToNow";
 
 import colors from "../../config/colors";
+import trackApi from "../../Util/trackApi";
 
 function TrackerInfo({ title, nextEp }) {
   let nextFormatted;
   if (nextEp !== undefined)
-    nextFormatted = formatDistance(Date.now(), new Date(nextEp));
-
+    nextFormatted = formatDistanceToNow(Date.parse(nextEp));
   return (
     <View style={styles.container}>
       <Text style={[styles.text, styles.title]}>{title}</Text>
@@ -18,6 +18,7 @@ function TrackerInfo({ title, nextEp }) {
           ? `Next Episode: TBA`
           : `Next Episode: ${nextFormatted}`}
       </Text>
+      <Button title="test" onPress={trackApi.getScheduledNotifications} />
     </View>
   );
 }

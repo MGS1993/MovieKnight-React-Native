@@ -1,4 +1,8 @@
-const backendAddress = "http://192.168.44.115:9000/api";
+import * as Notifications from "expo-notifications";
+import differenceInSeconds from "date-fns/differenceInSeconds";
+import parseISO from "date-fns/parseISO";
+
+const backendAddress = "http://10.196.64.208:9000/api";
 
 const handleTvTrack = async (values, endpoint, userEmail) => {
   try {
@@ -22,11 +26,50 @@ const handleTvTrack = async (values, endpoint, userEmail) => {
       },
     });
     const data = await response.json();
+    let identifier;
+    if (response.ok) {
+      console.log("run setNotification");
+      identifier = await setNotificationSchedule(
+        dataBody.nextAirDate,
+        dataBody.title
+      );
+      await getScheduledNotifications();
+    }
 
     console.log(data.msg);
-    return { response, data };
+    return { response, data, identifier };
   } catch (err) {
     console.log(err);
+  }
+};
+
+const setNotificationSchedule = async (nextAirDate, title) => {
+  const today = new Date();
+  const airDateParsed = parseISO(nextAirDate);
+  const difference = differenceInSeconds(airDateParsed, today);
+  let identifier;
+  if (difference > 0)
+    identifier = await Notifications.scheduleNotificationAsync({
+      content: {
+        title: "New Episode Alert",
+        body: `New Episode of ${title} out today `,
+      },
+      trigger: {
+        seconds: difference,
+      },
+    });
+  console.log("identifier:", identifier);
+  return identifier;
+};
+
+const appendScheduledNotification = async (_id, identifier) => {
+  try {
+    const response = await fetch(
+      `${backendAddress}/append_schedule/${_id}/${identifier}`
+    );
+    return await response.json();
+  } catch (error) {
+    console.log(error);
   }
 };
 
@@ -59,8 +102,18 @@ const deleteHandler = async (userEmail, showId) => {
   }
 };
 
+const getScheduledNotifications = async () => {
+  const notificationList =
+    await Notifications.getAllScheduledNotificationsAsync();
+
+  console.log(notificationList);
+};
+
 export default {
+  appendScheduledNotification,
   deleteHandler,
   handleGetTracked,
   handleTvTrack,
+  setNotificationSchedule,
+  getScheduledNotifications,
 };
