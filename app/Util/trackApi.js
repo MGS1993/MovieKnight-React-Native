@@ -26,18 +26,7 @@ const handleTvTrack = async (values, endpoint, userEmail) => {
       },
     });
     const data = await response.json();
-    let identifier;
-    if (response.ok) {
-      console.log("run setNotification");
-      identifier = await setNotificationSchedule(
-        dataBody.nextAirDate,
-        dataBody.title
-      );
-      // await getScheduledNotifications();
-    }
-
-    console.log(data.msg);
-    return { response, data, identifier };
+    return { data, response };
   } catch (err) {
     console.log(err);
   }
@@ -47,6 +36,7 @@ const setNotificationSchedule = async (nextAirDate, title) => {
   const today = new Date();
   const airDateParsed = parseISO(nextAirDate);
   const difference = differenceInSeconds(airDateParsed, today);
+  console.log("difference:", difference);
   let identifier;
   if (difference > 0)
     identifier = await Notifications.scheduleNotificationAsync({
@@ -113,8 +103,9 @@ const getScheduledNotifications = async () => {
 
 const cancelScheduledNotification = async (identifier) => {
   try {
-    console.log("Scheduled Notification canceled");
-    return await Notifications.cancelScheduledNotificationAsync(identifier);
+    identifier !== undefined
+      ? await Notifications.cancelScheduledNotificationAsync(identifier)
+      : console.log("Provided Identifier is undefined");
   } catch (error) {
     console.log("Error Canceling Scheduled Notification", error);
   }

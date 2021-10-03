@@ -20,17 +20,26 @@ function Tracker({ mediaType, mediaData, visible = false, trackerStyle }) {
   };
 
   const trackHandler = async () => {
-    const { data, identifier } = await trackApi.handleTvTrack(
+    const { data, response } = await trackApi.handleTvTrack(
       mediaData,
       "/track_tv_show",
       user.email
     );
-
-    await trackApi.appendNotificationIdentifier(data.tvShow._id, identifier);
-
     console.log(data);
-    console.log(identifier);
-
+    if (response.ok) {
+      //returns a receipt (identifier)
+      let notification = await trackApi.setNotificationSchedule(
+        data.tvShow.nextAirDate,
+        data.tvShow.title
+      );
+      await trackApi.appendNotificationIdentifier(
+        data.tvShow._id,
+        notification
+      );
+    }
+    // await trackApi.appendNotificationIdentifier(data.tvShow._id, identifier);
+    // console.log(data);
+    // console.log(identifier);
     setIsTracking(true);
     setResponseMessage(data.msg);
   };
