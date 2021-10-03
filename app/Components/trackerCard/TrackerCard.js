@@ -27,7 +27,6 @@ function TrackerCard({ id, userEmail, updateTracked }) {
   // console.log(data);
   const handleDeleteTracker = async (userEmail, id) => {
     const data = await trackApi.deleteHandler(userEmail, id);
-    // console.log("data from delete", data.identifier);
     await trackApi.cancelScheduledNotification(data.identifier);
     updateTracked(userEmail);
     await trackApi.getScheduledNotifications();

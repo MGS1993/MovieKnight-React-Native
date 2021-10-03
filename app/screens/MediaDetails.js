@@ -113,7 +113,11 @@ function MediaDetails({ route }) {
                 mediaType={mediaType}
                 mediaData={data}
                 trackerStyle={styles.trackerContainer}
-                visible={data?.status === "Ended" ? false : true}
+                visible={
+                  data?.status === "Ended" || data?.next_episode_to_air === null
+                    ? false
+                    : true
+                }
               />
             </Animated.View>
           </>
