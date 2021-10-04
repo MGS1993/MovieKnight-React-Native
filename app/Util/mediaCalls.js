@@ -69,6 +69,7 @@ const getMediaDetails = async (mediaType, mediaId) => {
       `https://api.themoviedb.org/3/${mediaType}/${mediaId}?api_key=${apiKey}&language=en-US`
     );
     const data = await response.json();
+    // console.log("mediaDetails", data);
     return data;
   } catch (error) {
     console.log(error);

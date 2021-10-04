@@ -38,7 +38,9 @@ const setNotificationSchedule = async (nextAirDate, title) => {
   const difference = differenceInSeconds(airDateParsed, today);
   console.log("difference:", difference);
   let identifier;
-  if (difference > 0)
+  /*if difference is negative appendNotification will still append to
+  db. Update hook will run and apply appropriate data when available*/
+  if (difference > 0) {
     identifier = await Notifications.scheduleNotificationAsync({
       content: {
         title: "New Episode Alert",
@@ -48,7 +50,8 @@ const setNotificationSchedule = async (nextAirDate, title) => {
         seconds: difference,
       },
     });
-  console.log("identifier:", identifier);
+  }
+  console.log("Notification set. Identifier:", identifier);
   return identifier;
 };
 

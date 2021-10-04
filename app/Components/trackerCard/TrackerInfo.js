@@ -18,7 +18,7 @@ function TrackerInfo({ title, nextEp }) {
           ? `Next Episode: TBA`
           : `Next Episode: ${nextFormatted}`}
       </Text>
-      <Button title="test" onPress={trackApi.cancelAllNotifications} />
+      {/* <Button title="test" onPress={trackApi.cancelAllNotifications} /> */}
     </View>
   );
 }

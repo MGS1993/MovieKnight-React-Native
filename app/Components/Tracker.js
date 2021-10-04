@@ -37,9 +37,6 @@ function Tracker({ mediaType, mediaData, visible = false, trackerStyle }) {
         notification
       );
     }
-    // await trackApi.appendNotificationIdentifier(data.tvShow._id, identifier);
-    // console.log(data);
-    // console.log(identifier);
     setIsTracking(true);
     setResponseMessage(data.msg);
   };
