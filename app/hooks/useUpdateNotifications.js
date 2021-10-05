@@ -37,7 +37,11 @@ export default useUpdateNotifications = () => {
               apiAirDate,
               name
             );
-            await trackApi.appendNotificationIdentifier(item._id, identifier);
+            await trackApi.appendNotificationIdentifier(
+              item._id,
+              identifier,
+              apiAirDate
+            );
           }
         }
 
@@ -49,11 +53,16 @@ export default useUpdateNotifications = () => {
 
           if (newDifference > 0) {
             console.log(`New date available in api: ${item.title} `);
+            console.log(item);
             let identifier = await trackApi.setNotificationSchedule(
               apiAirDate,
               name
             );
-            await trackApi.appendNotificationIdentifier(item_id, identifier);
+            await trackApi.appendNotificationIdentifier(
+              item._id,
+              identifier,
+              apiAirDate
+            );
           }
 
           if (newDifference < 0) {

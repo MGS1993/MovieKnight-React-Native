@@ -2,7 +2,7 @@ import * as Notifications from "expo-notifications";
 import differenceInSeconds from "date-fns/differenceInSeconds";
 import parseISO from "date-fns/parseISO";
 
-const backendAddress = "http://10.196.64.208:9000/api";
+const backendAddress = "http://10.196.87.59:9000/api";
 
 const handleTvTrack = async (values, endpoint, userEmail) => {
   try {
@@ -55,10 +55,10 @@ const setNotificationSchedule = async (nextAirDate, title) => {
   return identifier;
 };
 
-const appendNotificationIdentifier = async (_id, identifier) => {
+const appendNotificationIdentifier = async (_id, identifier, nextAirDate) => {
   try {
     const response = await fetch(
-      `${backendAddress}/append_schedule/${_id}/${identifier}`
+      `${backendAddress}/append_schedule/${_id}/${identifier}/${nextAirDate}`
     );
     return await response.json();
   } catch (error) {
