@@ -26,7 +26,7 @@ function WelcomeScreen({ navigation }) {
           title="Register"
           onPress={() => navigation.navigate(routes.REGISTER_SCREEN)}
         />
-        <AppButton title="Continue as Guest" top={15} />
+        {/* <AppButton title="Continue as Guest" top={15} /> */}
       </View>
     </ImageBackground>
   );
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     alignItems: "center",
-    bottom: 60,
+    marginBottom: "30%",
     width: "100%",
   },
   logo: {
