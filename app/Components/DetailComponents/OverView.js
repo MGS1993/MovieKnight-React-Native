@@ -1,5 +1,5 @@
 import React from "react";
-import { Animated, View, StyleSheet, Text } from "react-native";
+import { Animated, StyleSheet, Text } from "react-native";
 import colors from "../../config/colors";
 import MediaStatus from "../trackerCard/MediaStatus";
 
