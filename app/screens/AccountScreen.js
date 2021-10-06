@@ -19,14 +19,14 @@ const menuItems = [
       backgroundColor: colors.danger,
     },
   },
-  {
-    title: "My Messages",
-    icon: {
-      name: "email",
-      backgroundColor: colors.safe,
-    },
-    // targetScreen: routes.MESSAGES,
-  },
+  // {
+  //   title: "My Messages",
+  //   icon: {
+  //     name: "email",
+  //     backgroundColor: colors.safe,
+  //   },
+  //   // targetScreen: routes.MESSAGES,
+  // },
 ];
 
 function AccountScreen({ navigation }) {
@@ -44,6 +44,7 @@ function AccountScreen({ navigation }) {
           title={user.username}
           subTitle={user.email}
           image={require("../../assets/blankProf.png")}
+          noChevron={true}
         />
       </View>
       <View style={styles.container}>

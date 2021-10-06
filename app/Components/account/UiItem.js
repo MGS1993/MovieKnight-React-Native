@@ -18,6 +18,7 @@ function UiItem({
   IconComponent,
   onPress,
   renderRightActions,
+  noChevron = false,
 }) {
   return (
     <Swipeable renderRightActions={renderRightActions}>
@@ -35,11 +36,13 @@ function UiItem({
               </Text>
             )}
           </View>
-          <MaterialCommunityIcons
-            color={colors.medium}
-            name="chevron-right"
-            size={25}
-          />
+          {noChevron ? null : (
+            <MaterialCommunityIcons
+              color={colors.medium}
+              name="chevron-right"
+              size={25}
+            />
+          )}
         </View>
       </TouchableHighlight>
     </Swipeable>
