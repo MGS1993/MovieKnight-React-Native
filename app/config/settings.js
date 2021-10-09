@@ -1,14 +1,15 @@
 import Constants from "expo-constants";
 
+//http://10.196.87.59:9000/api
 const settings = {
   dev: {
     apiUrl: "http://10.196.87.59:9000/api",
   },
   staging: {
-    apiUrl: "http://10.196.87.59:9000/api",
+    apiUrl: "https://movieknightbackend.herokuapp.com/api",
   },
   prod: {
-    apiUrl: "http://10.196.87.59:9000/api",
+    apiUrl: "https://movieknightbackend.herokuapp.com/api",
   },
 };
 
