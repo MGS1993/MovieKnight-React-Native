@@ -2,7 +2,9 @@ import * as Notifications from "expo-notifications";
 import differenceInSeconds from "date-fns/differenceInSeconds";
 import parseISO from "date-fns/parseISO";
 
-const backendAddress = "http://10.196.87.59:9000/api";
+import settings from "../config/settings";
+
+const backendAddress = settings.apiUrl;
 
 const handleTvTrack = async (values, endpoint, userEmail) => {
   try {

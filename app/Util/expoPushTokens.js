@@ -1,4 +1,6 @@
-const backendAddress = "http://10.196.87.59:9000/api";
+import settings from "../config/settings";
+
+const backendAddress = settings.apiUrl;
 
 const pushTokenRegistration = async (token, user, endpoint) => {
   try {
